@@ -1,0 +1,72 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Runtime Case Builder</title>
+
+    <meta name="description" content="Runtime Case Builder">
+    <meta name="author" content="acbart">
+
+</head>
+
+<body>
+    <div class="container-lg">
+        <div class="row">
+            <div class="col">
+                <button data-bind="click: ()=> console.log(session)">Log Session</button>
+                <button data-bind="click: ()=> console.log(JSON.stringify(session.toJson(), null, 2))">Dump Session</button>
+                <session-editor params="session: session, editingInputs: editingInputs, codeMirrorOptions: codeMirrorOptions"></session-editor>
+            </div>
+        </div>
+        <div class="row mt-3">
+
+            <div class="col-md-6">
+                <h3>Input Size vs. Steps Taken</h3>
+                <canvas id="runtime-chart"></canvas>
+            </div>
+            <div class="col-md-6">
+                <!-- ko if: session.undoRemoveInstances().length > 0 -->
+                <button class="btn btn-warning btn-sm float-right"
+                    data-bind="click: $root.session.restoreInstance.bind($root.session, $data)">
+                    <i class="fa fa-trash-restore-alt" aria-hidden="true" title="Restore Instance"></i>
+                    <span>Restore removed instance</span>
+                </button>
+                <!-- /ko -->
+                <h3>Plotted Instances</h3>
+                <table class="table table-bordered table-condensed table-striped table-hover table-sm">
+                    <tr>
+                        <th>Case</th>
+                        <th>N</th>
+                        <th>Steps</th>
+                        <th>Output</th>
+                        <th class="w-10 no-copy"></th>
+                    </tr>
+                    <!-- ko foreach: session.instances -->
+                    <tr data-bind="css: {'table-danger': error()}, click: ()=>{alert(dumpAll())}">
+                        <td data-bind="text: fromCase.name"></td>
+                        <td data-bind="text: value"></td>
+                        <td data-bind="text: steps"></td>
+                        <td data-bind="text: error() || output()"></td>
+                        <td class="no-copy">
+                            <button class="btn btn-danger btn-sm ml-auto no-copy"
+                                data-bind="click: $root.session.removeInstance.bind($root.session, $data)">
+                                <i class="fa fa-trash-alt" aria-hidden="true" title="Remove Instance"></i>
+                                <span class="sr-only no-copy">Remove this instance</span>
+                            </button>
+                        </td>
+                    </tr>
+                    <!-- /ko -->
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="libs/skulpt.js"></script>
+    <script src="libs/skulpt-stdlib.js"></script>
+
+</body>
+</html>

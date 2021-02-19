@@ -1,0 +1,54 @@
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+
+@import '~codemirror/lib/codemirror.css';
+@import '~codemirror/theme/monokai.css';
+
+.CodeMirror {
+    border: 1px solid gray;
+}
+
+.CodeMirror pre.CodeMirror-line {
+    border-bottom: 1px dashed lightgray;
+}
+
+#arrays, #color-hints {
+    border: 1px solid gray;
+    padding: 2px;
+}
+
+mark {
+    background: red;
+    display: block;
+}
+
+input.code-input {
+  font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+}
+
+html {
+    /* default font-size is 16px - this is set in the default browser stylesheet */
+    font-size: 14px;
+}
+
+input[type="color"].custom {
+  	padding: 4px;
+	/*border: none;
+	height: 50px;*/
+	width: 40px;
+	vertical-align: middle;
+}
+
+.generators-area {
+  min-height: 50px;
+}
+
+.no-copy {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

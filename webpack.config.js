@@ -41,12 +41,12 @@ module.exports = {
                 use: ['style-loader', 'css-loader']
             },
             {
-                include: path.resolve(__dirname, 'node_modules/@fortawesome/'),
+                include: [path.resolve(__dirname, 'node_modules/@fortawesome/')],
                 test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
                 use: {
                     loader: 'file-loader',
                     options: {
-                        name: '[path][name].[ext]',
+                        name: '[path][name].[ext]'
                     },
                 },
             },
@@ -61,7 +61,8 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 {from: "libs/*.js"},
-                {from: "sessions/*.json"}
+                {from: "sessions/*.json"},
+                {from: "src/favicon.ico"}
             ],
         }),
         new HtmlWebpackPlugin({

@@ -1,0 +1,29 @@
+{
+  "inputs": [
+    {
+      "name": "n",
+      "type": "int"
+    },
+    {
+      "name": "numbers",
+      "type": "list[int]"
+    }
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "name": "Best",
+      "color": "#00FF00",
+      "generators": []
+    },
+    {
+      "id": 1,
+      "name": "Worst",
+      "color": "#FF0000",
+      "generators": []
+    }
+  ],
+  "instances": [],
+  "code": "first = \"nowhere\"\nfor index, number in enumerate(numbers):\n    if number < 0:\n        first = index\n        break\nprint(\"Found at\", index)",
+  "title": "Lesson 4 Question 5"
+}

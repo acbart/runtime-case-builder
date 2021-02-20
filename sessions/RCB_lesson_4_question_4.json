@@ -1,0 +1,25 @@
+{
+  "inputs": [
+    {
+      "name": "n",
+      "type": "int"
+    }
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "name": "Best",
+      "color": "#00FF00",
+      "generators": []
+    },
+    {
+      "id": 1,
+      "name": "Worst",
+      "color": "#FF0000",
+      "generators": []
+    }
+  ],
+  "instances": [],
+  "code": "result = 0\nfor i in range(n):\n    for j in range(i):\n        result = i * j\nprint(result)",
+  "title": "Lesson 4 Question 4"
+}

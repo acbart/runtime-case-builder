@@ -1,0 +1,1223 @@
+{
+  "inputs": [
+    {
+      "name": "n",
+      "type": "int"
+    }
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "name": "Best",
+      "color": "#00FF00",
+      "generators": [
+        {
+          "id": 0,
+          "code": [
+            "randint(1, 70)*2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Worst",
+      "color": "#FF0000",
+      "generators": [
+        {
+          "id": 1,
+          "code": [
+            "randint(1, 70)*2-1"
+          ]
+        }
+      ]
+    }
+  ],
+  "instances": [
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 118,
+      "steps": 11806,
+      "error": null,
+      "output": [
+        "69614100\n"
+      ],
+      "data": {
+        "n": "118"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 6,
+      "steps": 606,
+      "error": null,
+      "output": [
+        "179700\n"
+      ],
+      "data": {
+        "n": "6"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 14,
+      "steps": 1406,
+      "error": null,
+      "output": [
+        "979300\n"
+      ],
+      "data": {
+        "n": "14"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 46,
+      "steps": 4606,
+      "error": null,
+      "output": [
+        "10577700\n"
+      ],
+      "data": {
+        "n": "46"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 36,
+      "steps": 3606,
+      "error": null,
+      "output": [
+        "6478200\n"
+      ],
+      "data": {
+        "n": "36"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 108,
+      "steps": 10806,
+      "error": null,
+      "output": [
+        "58314600\n"
+      ],
+      "data": {
+        "n": "108"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 98,
+      "steps": 9806,
+      "error": null,
+      "output": [
+        "48015100\n"
+      ],
+      "data": {
+        "n": "98"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 48,
+      "steps": 4806,
+      "error": null,
+      "output": [
+        "11517600\n"
+      ],
+      "data": {
+        "n": "48"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 76,
+      "steps": 7606,
+      "error": null,
+      "output": [
+        "28876200\n"
+      ],
+      "data": {
+        "n": "76"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 130,
+      "steps": 13006,
+      "error": null,
+      "output": [
+        "84493500\n"
+      ],
+      "data": {
+        "n": "130"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 78,
+      "steps": 7806,
+      "error": null,
+      "output": [
+        "30416100\n"
+      ],
+      "data": {
+        "n": "78"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 98,
+      "steps": 9806,
+      "error": null,
+      "output": [
+        "48015100\n"
+      ],
+      "data": {
+        "n": "98"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 122,
+      "steps": 12206,
+      "error": null,
+      "output": [
+        "74413900\n"
+      ],
+      "data": {
+        "n": "122"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 140,
+      "steps": 14006,
+      "error": null,
+      "output": [
+        "97993000\n"
+      ],
+      "data": {
+        "n": "140"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 20,
+      "steps": 2006,
+      "error": null,
+      "output": [
+        "1999000\n"
+      ],
+      "data": {
+        "n": "20"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 120,
+      "steps": 12006,
+      "error": null,
+      "output": [
+        "71994000\n"
+      ],
+      "data": {
+        "n": "120"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 56,
+      "steps": 5606,
+      "error": null,
+      "output": [
+        "15677200\n"
+      ],
+      "data": {
+        "n": "56"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 20,
+      "steps": 2006,
+      "error": null,
+      "output": [
+        "1999000\n"
+      ],
+      "data": {
+        "n": "20"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 98,
+      "steps": 9806,
+      "error": null,
+      "output": [
+        "48015100\n"
+      ],
+      "data": {
+        "n": "98"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 18,
+      "steps": 1806,
+      "error": null,
+      "output": [
+        "1619100\n"
+      ],
+      "data": {
+        "n": "18"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 20,
+      "steps": 2006,
+      "error": null,
+      "output": [
+        "1999000\n"
+      ],
+      "data": {
+        "n": "20"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 140,
+      "steps": 14006,
+      "error": null,
+      "output": [
+        "97993000\n"
+      ],
+      "data": {
+        "n": "140"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 88,
+      "steps": 8806,
+      "error": null,
+      "output": [
+        "38715600\n"
+      ],
+      "data": {
+        "n": "88"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 52,
+      "steps": 5206,
+      "error": null,
+      "output": [
+        "13517400\n"
+      ],
+      "data": {
+        "n": "52"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 112,
+      "steps": 11206,
+      "error": null,
+      "output": [
+        "62714400\n"
+      ],
+      "data": {
+        "n": "112"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 136,
+      "steps": 13606,
+      "error": null,
+      "output": [
+        "92473200\n"
+      ],
+      "data": {
+        "n": "136"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 42,
+      "steps": 4206,
+      "error": null,
+      "output": [
+        "8817900\n"
+      ],
+      "data": {
+        "n": "42"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 136,
+      "steps": 13606,
+      "error": null,
+      "output": [
+        "92473200\n"
+      ],
+      "data": {
+        "n": "136"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 102,
+      "steps": 10206,
+      "error": null,
+      "output": [
+        "52014900\n"
+      ],
+      "data": {
+        "n": "102"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 28,
+      "steps": 2806,
+      "error": null,
+      "output": [
+        "3918600\n"
+      ],
+      "data": {
+        "n": "28"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 66,
+      "steps": 6606,
+      "error": null,
+      "output": [
+        "21776700\n"
+      ],
+      "data": {
+        "n": "66"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 92,
+      "steps": 9206,
+      "error": null,
+      "output": [
+        "42315400\n"
+      ],
+      "data": {
+        "n": "92"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 16,
+      "steps": 1606,
+      "error": null,
+      "output": [
+        "1279200\n"
+      ],
+      "data": {
+        "n": "16"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 70,
+      "steps": 7006,
+      "error": null,
+      "output": [
+        "24496500\n"
+      ],
+      "data": {
+        "n": "70"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 82,
+      "steps": 8206,
+      "error": null,
+      "output": [
+        "33615900\n"
+      ],
+      "data": {
+        "n": "82"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 50,
+      "steps": 5006,
+      "error": null,
+      "output": [
+        "12497500\n"
+      ],
+      "data": {
+        "n": "50"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 128,
+      "steps": 12806,
+      "error": null,
+      "output": [
+        "81913600\n"
+      ],
+      "data": {
+        "n": "128"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 26,
+      "steps": 2606,
+      "error": null,
+      "output": [
+        "3378700\n"
+      ],
+      "data": {
+        "n": "26"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 104,
+      "steps": 10406,
+      "error": null,
+      "output": [
+        "54074800\n"
+      ],
+      "data": {
+        "n": "104"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 52,
+      "steps": 5206,
+      "error": null,
+      "output": [
+        "13517400\n"
+      ],
+      "data": {
+        "n": "52"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 90,
+      "steps": 9006,
+      "error": null,
+      "output": [
+        "40495500\n"
+      ],
+      "data": {
+        "n": "90"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 116,
+      "steps": 11606,
+      "error": null,
+      "output": [
+        "67274200\n"
+      ],
+      "data": {
+        "n": "116"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 26,
+      "steps": 2606,
+      "error": null,
+      "output": [
+        "3378700\n"
+      ],
+      "data": {
+        "n": "26"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 26,
+      "steps": 2606,
+      "error": null,
+      "output": [
+        "3378700\n"
+      ],
+      "data": {
+        "n": "26"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 32,
+      "steps": 3206,
+      "error": null,
+      "output": [
+        "5118400\n"
+      ],
+      "data": {
+        "n": "32"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 97,
+      "steps": 9609,
+      "error": null,
+      "output": [
+        "903264\n"
+      ],
+      "data": {
+        "n": "97"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 99,
+      "steps": 10005,
+      "error": null,
+      "output": [
+        "960498\n"
+      ],
+      "data": {
+        "n": "99"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 113,
+      "steps": 13001,
+      "error": null,
+      "output": [
+        "1430128\n"
+      ],
+      "data": {
+        "n": "113"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 87,
+      "steps": 7749,
+      "error": null,
+      "output": [
+        "650934\n"
+      ],
+      "data": {
+        "n": "87"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 7,
+      "steps": 69,
+      "error": null,
+      "output": [
+        "294\n"
+      ],
+      "data": {
+        "n": "7"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 25,
+      "steps": 681,
+      "error": null,
+      "output": [
+        "15000\n"
+      ],
+      "data": {
+        "n": "25"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 109,
+      "steps": 12105,
+      "error": null,
+      "output": [
+        "1283148\n"
+      ],
+      "data": {
+        "n": "109"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 123,
+      "steps": 15381,
+      "error": null,
+      "output": [
+        "1845738\n"
+      ],
+      "data": {
+        "n": "123"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 13,
+      "steps": 201,
+      "error": null,
+      "output": [
+        "2028\n"
+      ],
+      "data": {
+        "n": "13"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 133,
+      "steps": 17961,
+      "error": null,
+      "output": [
+        "2334948\n"
+      ],
+      "data": {
+        "n": "133"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 123,
+      "steps": 15381,
+      "error": null,
+      "output": [
+        "1845738\n"
+      ],
+      "data": {
+        "n": "123"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 77,
+      "steps": 6089,
+      "error": null,
+      "output": [
+        "450604\n"
+      ],
+      "data": {
+        "n": "77"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 59,
+      "steps": 3605,
+      "error": null,
+      "output": [
+        "201898\n"
+      ],
+      "data": {
+        "n": "59"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 33,
+      "steps": 1161,
+      "error": null,
+      "output": [
+        "34848\n"
+      ],
+      "data": {
+        "n": "33"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 57,
+      "steps": 3369,
+      "error": null,
+      "output": [
+        "181944\n"
+      ],
+      "data": {
+        "n": "57"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 89,
+      "steps": 8105,
+      "error": null,
+      "output": [
+        "697048\n"
+      ],
+      "data": {
+        "n": "89"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 87,
+      "steps": 7749,
+      "error": null,
+      "output": [
+        "650934\n"
+      ],
+      "data": {
+        "n": "87"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 137,
+      "steps": 19049,
+      "error": null,
+      "output": [
+        "2552584\n"
+      ],
+      "data": {
+        "n": "137"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 81,
+      "steps": 6729,
+      "error": null,
+      "output": [
+        "524880\n"
+      ],
+      "data": {
+        "n": "81"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 119,
+      "steps": 14405,
+      "error": null,
+      "output": [
+        "1670998\n"
+      ],
+      "data": {
+        "n": "119"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 125,
+      "steps": 15881,
+      "error": null,
+      "output": [
+        "1937500\n"
+      ],
+      "data": {
+        "n": "125"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 89,
+      "steps": 8105,
+      "error": null,
+      "output": [
+        "697048\n"
+      ],
+      "data": {
+        "n": "89"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 127,
+      "steps": 16389,
+      "error": null,
+      "output": [
+        "2032254\n"
+      ],
+      "data": {
+        "n": "127"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 29,
+      "steps": 905,
+      "error": null,
+      "output": [
+        "23548\n"
+      ],
+      "data": {
+        "n": "29"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 13,
+      "steps": 201,
+      "error": null,
+      "output": [
+        "2028\n"
+      ],
+      "data": {
+        "n": "13"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 81,
+      "steps": 6729,
+      "error": null,
+      "output": [
+        "524880\n"
+      ],
+      "data": {
+        "n": "81"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 3,
+      "steps": 21,
+      "error": null,
+      "output": [
+        "18\n"
+      ],
+      "data": {
+        "n": "3"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 115,
+      "steps": 13461,
+      "error": null,
+      "output": [
+        "1507650\n"
+      ],
+      "data": {
+        "n": "115"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 55,
+      "steps": 3141,
+      "error": null,
+      "output": [
+        "163350\n"
+      ],
+      "data": {
+        "n": "55"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 87,
+      "steps": 7749,
+      "error": null,
+      "output": [
+        "650934\n"
+      ],
+      "data": {
+        "n": "87"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 17,
+      "steps": 329,
+      "error": null,
+      "output": [
+        "4624\n"
+      ],
+      "data": {
+        "n": "17"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 97,
+      "steps": 9609,
+      "error": null,
+      "output": [
+        "903264\n"
+      ],
+      "data": {
+        "n": "97"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 117,
+      "steps": 13929,
+      "error": null,
+      "output": [
+        "1587924\n"
+      ],
+      "data": {
+        "n": "117"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 23,
+      "steps": 581,
+      "error": null,
+      "output": [
+        "11638\n"
+      ],
+      "data": {
+        "n": "23"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 65,
+      "steps": 4361,
+      "error": null,
+      "output": [
+        "270400\n"
+      ],
+      "data": {
+        "n": "65"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 35,
+      "steps": 1301,
+      "error": null,
+      "output": [
+        "41650\n"
+      ],
+      "data": {
+        "n": "35"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 23,
+      "steps": 581,
+      "error": null,
+      "output": [
+        "11638\n"
+      ],
+      "data": {
+        "n": "23"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 3,
+      "steps": 21,
+      "error": null,
+      "output": [
+        "18\n"
+      ],
+      "data": {
+        "n": "3"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 127,
+      "steps": 16389,
+      "error": null,
+      "output": [
+        "2032254\n"
+      ],
+      "data": {
+        "n": "127"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 35,
+      "steps": 1301,
+      "error": null,
+      "output": [
+        "41650\n"
+      ],
+      "data": {
+        "n": "35"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 101,
+      "steps": 10409,
+      "error": null,
+      "output": [
+        "1020100\n"
+      ],
+      "data": {
+        "n": "101"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 37,
+      "steps": 1449,
+      "error": null,
+      "output": [
+        "49284\n"
+      ],
+      "data": {
+        "n": "37"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 41,
+      "steps": 1769,
+      "error": null,
+      "output": [
+        "67240\n"
+      ],
+      "data": {
+        "n": "41"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 31,
+      "steps": 1029,
+      "error": null,
+      "output": [
+        "28830\n"
+      ],
+      "data": {
+        "n": "31"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 1,
+      "steps": 9,
+      "error": null,
+      "output": [
+        "0\n"
+      ],
+      "data": {
+        "n": "1"
+      }
+    },
+    {
+      "fromCase": 1,
+      "fromGenerator": 1,
+      "value": 43,
+      "steps": 1941,
+      "error": null,
+      "output": [
+        "77658\n"
+      ],
+      "data": {
+        "n": "43"
+      }
+    }
+  ],
+  "code": "sum = 0\nif n % 2:\n    for i in range(n):\n        for j in range(n):\n            sum = sum + i + j\nelse:\n    for i in range(100*n):\n        sum = sum + i\nprint(sum)",
+  "title": "Quadratic Odds and Linear Evens"
+}

@@ -1,0 +1,27 @@
+{
+  "inputs": [
+    {
+      "name": "array",
+      "type": "list[int]"
+    },
+    {
+      "name": "n",
+      "type": "int"
+    },
+    {
+      "name": "k",
+      "type": "int"
+    }
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "name": "Best",
+      "color": "#00FF00",
+      "generators": []
+    }
+  ],
+  "instances": [],
+  "code": "found = False\nfor item in array:\n    if item == k:\n        found = True\n        break\nprint(\"FOUND\" if found else \"NOT FOUND\")",
+  "title": "Find with Break"
+}

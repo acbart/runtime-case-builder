@@ -8,38 +8,53 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~codemirror/theme/monokai.css';
 
 .CodeMirror {
-    border: 1px solid gray;
+  /*border: 1px solid lightgray;*/
+  height: auto;
+  border: 1px solid #c7d7e3;
 }
 
 .CodeMirror pre.CodeMirror-line {
-    border-bottom: 1px dashed lightgray;
+  border-bottom: 1px dashed lightgray;
+}
+
+.precode .CodeMirror {
+  border-bottom: 1px dashed grey;
+  background-color: #EEE;
+}
+
+.realcode .CodeMirror {
+  border-top: 0;
+}
+
+.precode .CodeMirror pre.CodeMirror-line {
+  border-bottom: 0;
 }
 
 #arrays, #color-hints {
-    border: 1px solid gray;
-    padding: 2px;
+  border: 1px solid gray;
+  padding: 2px;
 }
 
 mark {
-    background: red;
-    display: block;
+  background: red;
+  display: block;
 }
 
 input.code-input {
-  font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+  font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
 }
 
 html {
-    /* default font-size is 16px - this is set in the default browser stylesheet */
-    font-size: 14px;
+  /* default font-size is 16px - this is set in the default browser stylesheet */
+  font-size: 14px;
 }
 
 input[type="color"].custom {
-  	padding: 4px;
-	/*border: none;
-	height: 50px;*/
-	width: 40px;
-	vertical-align: middle;
+  padding: 4px;
+  /*border: none;
+  height: 50px;*/
+  width: 40px;
+  vertical-align: middle;
 }
 
 .generators-area {
@@ -51,4 +66,16 @@ input[type="color"].custom {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.navbar-brand {
+  font-size: 24px;
+}
+
+.bg-lightblue {
+  background-color: #e3f2fd;
+}
+
+.bg-background {
+  background-color: #f1f8ff;
 }

@@ -61,6 +61,7 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 {from: "libs/*.js"},
+                {from: "sessions/*.json"}
             ],
         }),
         new HtmlWebpackPlugin({

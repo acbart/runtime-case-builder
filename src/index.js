@@ -37,7 +37,8 @@ export const CODE_MIRROR_READONLY_OPTIONS = {
         singleLineStringErrors: false
     },
     lineNumbers: true,
-    readOnly: true
+    readOnly: 'nocursor',
+    viewPortMargin: Infinity
 }
 
 
@@ -85,6 +86,10 @@ export const CHART_OPTIONS = {
                 labelString: "Runtime (steps)"
             }
         }]
+    },
+    title: {
+        display: true,
+        text: "Input Size vs. Steps Taken"
     }
 };
 
@@ -107,7 +112,6 @@ class CaseBuilderModel {
         // TODO: "You changed this generator, clear its instances?
         this.session.cases.subscribe((changes) => {
             changes.map((change) => {
-                console.log(change);
                 if (change.status === 'added') {
                     change.value.color.subscribe((newColor) => {
                         if (change.value.id in this.chartDatasetsMap) {
@@ -133,7 +137,8 @@ class CaseBuilderModel {
                         this.chartDatasetsMap[aCase.id] = {
                             label: aCase.name(),
                             data: [],
-                            backgroundColor: aCase.color()
+                            backgroundColor: aCase.color(),
+                            _id: aCase.id
                         }
                         this.chartData.datasets.push(this.chartDatasetsMap[aCase.id]);
                     }
@@ -143,6 +148,15 @@ class CaseBuilderModel {
                     removeXY(this.chartDatasetsMap[aCase.id].data, change.value.value(), change.value.steps());
                     if (this.chartDatasetsMap[aCase.id].data.length === 0) {
                         delete this.chartDatasetsMap[aCase.id];
+                        let removalIndex = null;
+                        for (let i=0; i<this.chartData.datasets.length; i++) {
+                            if (this.chartData.datasets[i]._id === aCase.id) {
+                                removalIndex = i;
+                            }
+                        }
+                        if (removalIndex !== null) {
+                            this.chartData.datasets.splice(removalIndex, 1);
+                        }
                     }
                 }
             });
@@ -155,25 +169,36 @@ class CaseBuilderModel {
 
 $(document).ready(function() {
     setup();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const preloadName = urlParams.get('preload');
+
     let chart = document.getElementById("runtime-chart");
     let model = new CaseBuilderModel(chart, {});
-    model.session.code(`sum = 0
+
+    if (preloadName != null) {
+        $.getJSON(`sessions/${preloadName}`, (data) => {
+            model.session.fromJson(data);
+            ko.applyBindings(model);
+        });
+    } else {
+        model.session.code(`sum = 0
 for i in range(n):
     for j in range(n):
         sum = sum + i + j
 print(sum)
-`)
-    ko.applyBindings(model);
+    
+    `);
+        ko.applyBindings(model);
 
+        model.session.inputs.push(new Input("n", "int"));
+        model.session.inputs.push(new Input("array", "list[int]"));
 
-
-    model.session.inputs.push(new Input("n", "int"));
-    model.session.inputs.push(new Input("array", "list[int]"));
-
-    model.session.cases.push(new Case(null, "Best", "#00FF00", [
-        new Generator(null, [ko.observable("3"), ko.observable("[randint(0, 10) for i in range(n)]")]),
-         new Generator(null, [ko.observable("4"), ko.observable("[1,2,3, 4]")])
-    ]))
+        model.session.cases.push(new Case(null, "Best", "#00FF00", [
+            new Generator(null, [ko.observable("3"), ko.observable("[randint(0, 10) for i in range(n)]")]),
+            new Generator(null, [ko.observable("4"), ko.observable("[1,2,3, 4]")])
+        ]));
+    }
 
     console.log(model.session.toJson());
 });

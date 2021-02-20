@@ -9,11 +9,18 @@ import 'codemirror/mode/python/python.js';
 ko.bindingHandlers.codemirror = {
     init: function(element, valueAccessor) {
         let options = ko.unwrap(valueAccessor());
-        element.editor = CodeMirror(element, ko.toJS(options));
+        let codeMirrorOptions = ko.toJS(options).options;
+        if ('firstLineNumber' in options) {
+            codeMirrorOptions.firstLineNumber = 1+options.firstLineNumber();
+            options.firstLineNumber.subscribe((newValue) => {
+                element.editor.setOption('firstLineNumber', 1+newValue);
+            });
+        }
+        element.editor = CodeMirror(element, codeMirrorOptions);
         element.editor.on('change', function(cm) {
             options.value(cm.getValue());
         });
-        element.editor.setSize(400, 150);
+        //element.editor.setSize(400, (29)*6);
 
         ko.utils.domNodeDisposal.addDisposeCallback(element, function() {
             let wrapper = element.editor.getWrapperElement();

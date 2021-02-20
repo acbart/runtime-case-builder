@@ -159,16 +159,34 @@ export class Session {
         }
     }
 
-    saveJson() {
+    saveJson(s, event) {
+        //event.preventDefault();
         let exportObj = this.toJson();
         let safeFilename = this.title().replace(/[^a-z0-9]/gi, '_').toLowerCase();
-        let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, null, 2));
+        safeFilename = `RCB_${safeFilename}.json`;
+        let contents = JSON.stringify(exportObj, null, 2);
+        // Make the data download as a file
+        let blob = new Blob([contents], {type: "text/json"});
+        if (window.navigator.msSaveOrOpenBlob) {
+            window.navigator.msSaveBlob(blob, safeFilename);
+        } else{
+            let temporaryDownloadLink = window.document.createElement("a");
+            temporaryDownloadLink.href = window.URL.createObjectURL(blob);
+            temporaryDownloadLink.download = safeFilename;
+            document.body.appendChild(temporaryDownloadLink);
+            temporaryDownloadLink.click();
+            document.body.removeChild(temporaryDownloadLink);
+        }
+        /*
+        let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(contents);
         let downloadAnchorNode = document.createElement('a');
         downloadAnchorNode.setAttribute("href", dataStr);
         downloadAnchorNode.setAttribute("download", `RCB_${safeFilename}.json`);
+        downloadAnchorNode.setAttribute("onclick", "console.log('hello')");
         document.body.appendChild(downloadAnchorNode); // required for firefox
         downloadAnchorNode.click();
         downloadAnchorNode.remove();
+        return false;*/
     }
 
     loadJson() {
@@ -285,8 +303,11 @@ export class Session {
     }
 
     clearInstancesSafely() {
+        console.log("INSTANCES BEFORE:", this.instances().length);
         let removed = this.instances.removeAll();
+        console.log("INSTANCES BEFORE:", this.instances().length);
         ko.utils.arrayPushAll(this.undoRemoveInstances, removed);
+        console.log("INSTANCES BEFORE:", this.instances().length);
     }
 
     runGenerator(aCase, generator) {
@@ -320,7 +341,7 @@ export class Session {
         if (confirmed) {
             let length = this.inputs().length;
             let defaultName = "array" + (length > 1 ? length : "");
-            this.inputs.push(new Input(length, defaultName, "list[int]"));
+            this.inputs.push(new Input(defaultName, "list[int]"));
             this.cases().map(c => {
                 c.generators().map(g => {
                     g.code.push("");

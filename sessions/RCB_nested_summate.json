@@ -1,0 +1,261 @@
+{
+  "inputs": [
+    {
+      "name": "n",
+      "type": "int"
+    }
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "name": "Best",
+      "color": "#00FF00",
+      "generators": [
+        {
+          "id": 0,
+          "code": [
+            "randint(0, 100)"
+          ]
+        }
+      ]
+    }
+  ],
+  "instances": [
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 31,
+      "steps": 1028,
+      "error": null,
+      "output": [
+        "28830\n"
+      ],
+      "data": {
+        "n": "31"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 45,
+      "steps": 2120,
+      "error": null,
+      "output": [
+        "89100\n"
+      ],
+      "data": {
+        "n": "45"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 19,
+      "steps": 404,
+      "error": null,
+      "output": [
+        "6498\n"
+      ],
+      "data": {
+        "n": "19"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 66,
+      "steps": 4493,
+      "error": null,
+      "output": [
+        "283140\n"
+      ],
+      "data": {
+        "n": "66"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 95,
+      "steps": 9220,
+      "error": null,
+      "output": [
+        "848350\n"
+      ],
+      "data": {
+        "n": "95"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 28,
+      "steps": 845,
+      "error": null,
+      "output": [
+        "21168\n"
+      ],
+      "data": {
+        "n": "28"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 85,
+      "steps": 7400,
+      "error": null,
+      "output": [
+        "606900\n"
+      ],
+      "data": {
+        "n": "85"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 69,
+      "steps": 4904,
+      "error": null,
+      "output": [
+        "323748\n"
+      ],
+      "data": {
+        "n": "69"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 82,
+      "steps": 6893,
+      "error": null,
+      "output": [
+        "544644\n"
+      ],
+      "data": {
+        "n": "82"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 29,
+      "steps": 904,
+      "error": null,
+      "output": [
+        "23548\n"
+      ],
+      "data": {
+        "n": "29"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 19,
+      "steps": 404,
+      "error": null,
+      "output": [
+        "6498\n"
+      ],
+      "data": {
+        "n": "19"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 87,
+      "steps": 7748,
+      "error": null,
+      "output": [
+        "650934\n"
+      ],
+      "data": {
+        "n": "87"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 84,
+      "steps": 7229,
+      "error": null,
+      "output": [
+        "585648\n"
+      ],
+      "data": {
+        "n": "84"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 28,
+      "steps": 845,
+      "error": null,
+      "output": [
+        "21168\n"
+      ],
+      "data": {
+        "n": "28"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 89,
+      "steps": 8104,
+      "error": null,
+      "output": [
+        "697048\n"
+      ],
+      "data": {
+        "n": "89"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 95,
+      "steps": 9220,
+      "error": null,
+      "output": [
+        "848350\n"
+      ],
+      "data": {
+        "n": "95"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 57,
+      "steps": 3368,
+      "error": null,
+      "output": [
+        "181944\n"
+      ],
+      "data": {
+        "n": "57"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 0,
+      "value": 34,
+      "steps": 1229,
+      "error": null,
+      "output": [
+        "38148\n"
+      ],
+      "data": {
+        "n": "34"
+      }
+    }
+  ],
+  "code": "sum = 0\nfor i in range(n):\n    for j in range(n):\n        sum = sum + i + j\nprint(sum)",
+  "title": "Nested Summate"
+}

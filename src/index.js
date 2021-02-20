@@ -130,6 +130,7 @@ class CaseBuilderModel {
         }, this.session.cases, "arrayChange");
         this.session.instances.subscribe((changes) => {
             // Find the case and generator
+            let kills = [];
             changes.map((change) => {
                 if (change.status === 'added') {
                     let aCase = change.value.fromCase;
@@ -147,17 +148,22 @@ class CaseBuilderModel {
                     let aCase = change.value.fromCase;
                     removeXY(this.chartDatasetsMap[aCase.id].data, change.value.value(), change.value.steps());
                     if (this.chartDatasetsMap[aCase.id].data.length === 0) {
-                        delete this.chartDatasetsMap[aCase.id];
-                        let removalIndex = null;
-                        for (let i=0; i<this.chartData.datasets.length; i++) {
-                            if (this.chartData.datasets[i]._id === aCase.id) {
-                                removalIndex = i;
-                            }
-                        }
-                        if (removalIndex !== null) {
-                            this.chartData.datasets.splice(removalIndex, 1);
+                        if (!kills.includes(aCase.id)) {
+                            kills.push(aCase.id);
                         }
                     }
+                }
+            });
+            kills.map(cid => {
+                delete this.chartDatasetsMap[cid];
+                let removalIndex = null;
+                for (let i=0; i<this.chartData.datasets.length; i++) {
+                    if (this.chartData.datasets[i]._id === cid) {
+                        removalIndex = i;
+                    }
+                }
+                if (removalIndex !== null) {
+                    this.chartData.datasets.splice(removalIndex, 1);
                 }
             });
             this.chart.update();
@@ -180,6 +186,9 @@ $(document).ready(function() {
         $.getJSON(`sessions/${preloadName}`, (data) => {
             model.session.fromJson(data);
             ko.applyBindings(model);
+        }).fail((error) => {
+            alert(`The given session was not found: ${preloadName}\nCheck that the URL was correct?`)
+            console.error(error);
         });
     } else {
         model.session.code(`sum = 0

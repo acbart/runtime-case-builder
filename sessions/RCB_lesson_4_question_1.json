@@ -1,0 +1,25 @@
+{
+  "inputs": [
+    {
+      "name": "n",
+      "type": "int"
+    }
+  ],
+  "cases": [
+    {
+      "id": 2,
+      "name": "Worst",
+      "color": "#FF0000",
+      "generators": []
+    },
+    {
+      "id": 3,
+      "name": "Best",
+      "color": "#00ff00",
+      "generators": []
+    }
+  ],
+  "instances": [],
+  "code": "a = 47\nb = a - 22\nc = a * 57 + a * b - b",
+  "title": "Lesson 4 Question 1"
+}

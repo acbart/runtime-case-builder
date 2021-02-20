@@ -1,0 +1,29 @@
+{
+  "inputs": [
+    {
+      "name": "n",
+      "type": "int"
+    },
+    {
+      "name": "numbers",
+      "type": "list[int]"
+    }
+  ],
+  "cases": [
+    {
+      "id": 1,
+      "name": "Worst",
+      "color": "#FF0000",
+      "generators": []
+    },
+    {
+      "id": 2,
+      "name": "Best",
+      "color": "#00ff00",
+      "generators": []
+    }
+  ],
+  "instances": [],
+  "code": "sum = 0\nif n % 2:\n    for number in numbers:\n        sum += number\nprint(sum)",
+  "title": "Lesson 4 Question 3"
+}

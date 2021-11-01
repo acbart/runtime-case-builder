@@ -1,0 +1,2452 @@
+{
+  "inputs": [
+    {
+      "name": "array",
+      "type": "list[int]"
+    },
+    {
+      "name": "n",
+      "type": "int"
+    },
+    {
+      "name": "k",
+      "type": "int"
+    }
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "name": "Best",
+      "color": "#00FF00",
+      "generators": [
+        {
+          "id": 11,
+          "code": [
+            "range(randint(0, 100))",
+            "len(array)",
+            "0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Worst",
+      "color": "#FF0000",
+      "generators": [
+        {
+          "id": 12,
+          "code": [
+            "range(randint(0, 100))",
+            "len(array)",
+            "n"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Average",
+      "color": "#e100ff",
+      "generators": [
+        {
+          "id": 13,
+          "code": [
+            "range(randint(0, 100))",
+            "len(array)",
+            "randint(0, n)"
+          ]
+        }
+      ]
+    }
+  ],
+  "instances": [
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 81,
+      "steps": 59,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 81)",
+        "n": "81",
+        "k": "52"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 93,
+      "steps": 91,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 93)",
+        "n": "93",
+        "k": "84"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 33,
+      "steps": 13,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 33)",
+        "n": "33",
+        "k": "6"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 31,
+      "steps": 31,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 31)",
+        "n": "31",
+        "k": "24"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 37,
+      "steps": 38,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 37)",
+        "n": "37",
+        "k": "31"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 5,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 5)",
+        "n": "5",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 15,
+      "steps": 16,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 15)",
+        "n": "15",
+        "k": "9"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 17,
+      "steps": 15,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 17)",
+        "n": "17",
+        "k": "8"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 26,
+      "steps": 16,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 26)",
+        "n": "26",
+        "k": "9"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 3,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 3)",
+        "n": "3",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 44,
+      "steps": 48,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 44)",
+        "n": "44",
+        "k": "44"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 60,
+      "steps": 8,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 60)",
+        "n": "60",
+        "k": "1"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 79,
+      "steps": 37,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 79)",
+        "n": "79",
+        "k": "30"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 36,
+      "steps": 18,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 36)",
+        "n": "36",
+        "k": "11"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 14,
+      "steps": 11,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 14)",
+        "n": "14",
+        "k": "4"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 74,
+      "steps": 53,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 74)",
+        "n": "74",
+        "k": "46"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 16,
+      "steps": 12,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 16)",
+        "n": "16",
+        "k": "5"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 43,
+      "steps": 30,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 43)",
+        "n": "43",
+        "k": "23"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 51,
+      "steps": 10,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 51)",
+        "n": "51",
+        "k": "3"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 5,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 5)",
+        "n": "5",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 63,
+      "steps": 23,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 63)",
+        "n": "63",
+        "k": "16"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 11,
+      "steps": 9,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 11)",
+        "n": "11",
+        "k": "2"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 98,
+      "steps": 19,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 98)",
+        "n": "98",
+        "k": "12"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 1,
+      "steps": 5,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 1)",
+        "n": "1",
+        "k": "1"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 72,
+      "steps": 50,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 72)",
+        "n": "72",
+        "k": "43"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 97,
+      "steps": 80,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 97)",
+        "n": "97",
+        "k": "73"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 80,
+      "steps": 52,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 80)",
+        "n": "80",
+        "k": "45"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 40,
+      "steps": 28,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 40)",
+        "n": "40",
+        "k": "21"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 2,
+      "steps": 8,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 2)",
+        "n": "2",
+        "k": "1"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 35,
+      "steps": 34,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 35)",
+        "n": "35",
+        "k": "27"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 45,
+      "steps": 14,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 45)",
+        "n": "45",
+        "k": "7"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 33,
+      "steps": 27,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 33)",
+        "n": "33",
+        "k": "20"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 82,
+      "steps": 36,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 82)",
+        "n": "82",
+        "k": "29"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 92,
+      "steps": 69,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 92)",
+        "n": "92",
+        "k": "62"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 3,
+      "steps": 9,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 3)",
+        "n": "3",
+        "k": "2"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 0,
+      "steps": 4,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 0)",
+        "n": "0",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 31,
+      "steps": 26,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 31)",
+        "n": "31",
+        "k": "19"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 21,
+      "steps": 26,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 21)",
+        "n": "21",
+        "k": "19"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 9,
+      "steps": 13,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 9)",
+        "n": "9",
+        "k": "9"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 20,
+      "steps": 25,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 20)",
+        "n": "20",
+        "k": "18"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 47,
+      "steps": 36,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 47)",
+        "n": "47",
+        "k": "29"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 94,
+      "steps": 40,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 94)",
+        "n": "94",
+        "k": "33"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 60,
+      "steps": 56,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 60)",
+        "n": "60",
+        "k": "49"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 15,
+      "steps": 20,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 15)",
+        "n": "15",
+        "k": "13"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 23,
+      "steps": 19,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 23)",
+        "n": "23",
+        "k": "12"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 29,
+      "steps": 35,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 29)",
+        "n": "29",
+        "k": "28"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 8,
+      "steps": 11,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 8)",
+        "n": "8",
+        "k": "4"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 33,
+      "steps": 38,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 33)",
+        "n": "33",
+        "k": "31"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 4,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 4)",
+        "n": "4",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 88,
+      "steps": 78,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 88)",
+        "n": "88",
+        "k": "71"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 73,
+      "steps": 15,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 73)",
+        "n": "73",
+        "k": "8"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 24,
+      "steps": 19,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 24)",
+        "n": "24",
+        "k": "12"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 60,
+      "steps": 12,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 60)",
+        "n": "60",
+        "k": "5"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 36,
+      "steps": 33,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 36)",
+        "n": "36",
+        "k": "26"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 51,
+      "steps": 27,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 51)",
+        "n": "51",
+        "k": "20"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 36,
+      "steps": 34,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 36)",
+        "n": "36",
+        "k": "27"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 13,
+      "steps": 10,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 13)",
+        "n": "13",
+        "k": "3"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 92,
+      "steps": 38,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 92)",
+        "n": "92",
+        "k": "31"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 26,
+      "steps": 16,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 26)",
+        "n": "26",
+        "k": "9"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 71,
+      "steps": 46,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 71)",
+        "n": "71",
+        "k": "39"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 8,
+      "steps": 10,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 8)",
+        "n": "8",
+        "k": "3"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 87,
+      "steps": 88,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 87)",
+        "n": "87",
+        "k": "81"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 16,
+      "steps": 11,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 16)",
+        "n": "16",
+        "k": "4"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 81,
+      "steps": 26,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 81)",
+        "n": "81",
+        "k": "19"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 2,
+      "steps": 8,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 2)",
+        "n": "2",
+        "k": "1"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 70,
+      "steps": 9,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 70)",
+        "n": "70",
+        "k": "2"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 93,
+      "steps": 61,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 93)",
+        "n": "93",
+        "k": "54"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 39,
+      "steps": 17,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 39)",
+        "n": "39",
+        "k": "10"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 52,
+      "steps": 17,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 52)",
+        "n": "52",
+        "k": "10"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 54,
+      "steps": 10,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 54)",
+        "n": "54",
+        "k": "3"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 67,
+      "steps": 21,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 67)",
+        "n": "67",
+        "k": "14"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 78,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 78)",
+        "n": "78",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 4,
+      "steps": 9,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 4)",
+        "n": "4",
+        "k": "2"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 3,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 3)",
+        "n": "3",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 18,
+      "steps": 15,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 18)",
+        "n": "18",
+        "k": "8"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 60,
+      "steps": 43,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 60)",
+        "n": "60",
+        "k": "36"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 86,
+      "steps": 69,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 86)",
+        "n": "86",
+        "k": "62"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 91,
+      "steps": 71,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 91)",
+        "n": "91",
+        "k": "64"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 68,
+      "steps": 37,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 68)",
+        "n": "68",
+        "k": "30"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 20,
+      "steps": 23,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 20)",
+        "n": "20",
+        "k": "16"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 50,
+      "steps": 15,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 50)",
+        "n": "50",
+        "k": "8"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 33,
+      "steps": 19,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 33)",
+        "n": "33",
+        "k": "12"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 46,
+      "steps": 31,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 46)",
+        "n": "46",
+        "k": "24"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 41,
+      "steps": 41,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 41)",
+        "n": "41",
+        "k": "34"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 10,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 10)",
+        "n": "10",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 34,
+      "steps": 21,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 34)",
+        "n": "34",
+        "k": "14"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 62,
+      "steps": 19,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 62)",
+        "n": "62",
+        "k": "12"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 79,
+      "steps": 64,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 79)",
+        "n": "79",
+        "k": "57"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 88,
+      "steps": 85,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 88)",
+        "n": "88",
+        "k": "78"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 37,
+      "steps": 41,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 37)",
+        "n": "37",
+        "k": "34"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 28,
+      "steps": 8,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 28)",
+        "n": "28",
+        "k": "1"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 13,
+      "steps": 18,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 13)",
+        "n": "13",
+        "k": "11"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 49,
+      "steps": 39,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 49)",
+        "n": "49",
+        "k": "32"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 77,
+      "steps": 44,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 77)",
+        "n": "77",
+        "k": "37"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 70,
+      "steps": 74,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 70)",
+        "n": "70",
+        "k": "70"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 96,
+      "steps": 51,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 96)",
+        "n": "96",
+        "k": "44"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 62,
+      "steps": 34,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 62)",
+        "n": "62",
+        "k": "27"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 50,
+      "steps": 54,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 50)",
+        "n": "50",
+        "k": "50"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 48,
+      "steps": 51,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 48)",
+        "n": "48",
+        "k": "44"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 42,
+      "steps": 21,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 42)",
+        "n": "42",
+        "k": "14"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 42,
+      "steps": 11,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 42)",
+        "n": "42",
+        "k": "4"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 85,
+      "steps": 55,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 85)",
+        "n": "85",
+        "k": "48"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 37,
+      "steps": 24,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 37)",
+        "n": "37",
+        "k": "17"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 0,
+      "steps": 4,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 0)",
+        "n": "0",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 18,
+      "steps": 15,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 18)",
+        "n": "18",
+        "k": "8"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 4,
+      "steps": 9,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 4)",
+        "n": "4",
+        "k": "2"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 8,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 8)",
+        "n": "8",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 17,
+      "steps": 19,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 17)",
+        "n": "17",
+        "k": "12"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 32,
+      "steps": 9,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 32)",
+        "n": "32",
+        "k": "2"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 13,
+      "steps": 13,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 13)",
+        "n": "13",
+        "k": "6"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 66,
+      "steps": 16,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 66)",
+        "n": "66",
+        "k": "9"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 76,
+      "steps": 61,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 76)",
+        "n": "76",
+        "k": "54"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 54,
+      "steps": 12,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 54)",
+        "n": "54",
+        "k": "5"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 91,
+      "steps": 77,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 91)",
+        "n": "91",
+        "k": "70"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 56,
+      "steps": 16,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 56)",
+        "n": "56",
+        "k": "9"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 13,
+      "steps": 16,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 13)",
+        "n": "13",
+        "k": "9"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 46,
+      "steps": 15,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 46)",
+        "n": "46",
+        "k": "8"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 98,
+      "steps": 81,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 98)",
+        "n": "98",
+        "k": "74"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 22,
+      "steps": 10,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 22)",
+        "n": "22",
+        "k": "3"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 15,
+      "steps": 21,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 15)",
+        "n": "15",
+        "k": "14"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 7,
+      "steps": 11,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 7)",
+        "n": "7",
+        "k": "4"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 10,
+      "steps": 9,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 10)",
+        "n": "10",
+        "k": "2"
+      }
+    },
+    {
+      "fromCase": 3,
+      "fromGenerator": 13,
+      "value": 75,
+      "steps": 71,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 75)",
+        "n": "75",
+        "k": "64"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 11,
+      "value": 19,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 19)",
+        "n": "19",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 11,
+      "value": 86,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 86)",
+        "n": "86",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 11,
+      "value": 85,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 85)",
+        "n": "85",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 11,
+      "value": 26,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 26)",
+        "n": "26",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 11,
+      "value": 10,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 10)",
+        "n": "10",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 11,
+      "value": 49,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 49)",
+        "n": "49",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 11,
+      "value": 32,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 32)",
+        "n": "32",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 11,
+      "value": 23,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 23)",
+        "n": "23",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 11,
+      "value": 58,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 58)",
+        "n": "58",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 11,
+      "value": 50,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 50)",
+        "n": "50",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 11,
+      "value": 45,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 45)",
+        "n": "45",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 11,
+      "value": 22,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 22)",
+        "n": "22",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 11,
+      "value": 94,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 94)",
+        "n": "94",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 11,
+      "value": 38,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 38)",
+        "n": "38",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 11,
+      "value": 64,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 64)",
+        "n": "64",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 11,
+      "value": 39,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 39)",
+        "n": "39",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 11,
+      "value": 77,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 77)",
+        "n": "77",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 11,
+      "value": 6,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 6)",
+        "n": "6",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 0,
+      "fromGenerator": 11,
+      "value": 34,
+      "steps": 7,
+      "error": null,
+      "output": [
+        "FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 34)",
+        "n": "34",
+        "k": "0"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 12,
+      "value": 55,
+      "steps": 59,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 55)",
+        "n": "55",
+        "k": "55"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 12,
+      "value": 50,
+      "steps": 54,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 50)",
+        "n": "50",
+        "k": "50"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 12,
+      "value": 23,
+      "steps": 27,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 23)",
+        "n": "23",
+        "k": "23"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 12,
+      "value": 33,
+      "steps": 37,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 33)",
+        "n": "33",
+        "k": "33"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 12,
+      "value": 44,
+      "steps": 48,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 44)",
+        "n": "44",
+        "k": "44"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 12,
+      "value": 16,
+      "steps": 20,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 16)",
+        "n": "16",
+        "k": "16"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 12,
+      "value": 89,
+      "steps": 93,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 89)",
+        "n": "89",
+        "k": "89"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 12,
+      "value": 18,
+      "steps": 22,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 18)",
+        "n": "18",
+        "k": "18"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 12,
+      "value": 8,
+      "steps": 12,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 8)",
+        "n": "8",
+        "k": "8"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 12,
+      "value": 48,
+      "steps": 52,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 48)",
+        "n": "48",
+        "k": "48"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 12,
+      "value": 83,
+      "steps": 87,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 83)",
+        "n": "83",
+        "k": "83"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 12,
+      "value": 100,
+      "steps": 104,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 100)",
+        "n": "100",
+        "k": "100"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 12,
+      "value": 9,
+      "steps": 13,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 9)",
+        "n": "9",
+        "k": "9"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 12,
+      "value": 69,
+      "steps": 73,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 69)",
+        "n": "69",
+        "k": "69"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 12,
+      "value": 5,
+      "steps": 9,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 5)",
+        "n": "5",
+        "k": "5"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 12,
+      "value": 16,
+      "steps": 20,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 16)",
+        "n": "16",
+        "k": "16"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 12,
+      "value": 43,
+      "steps": 47,
+      "error": null,
+      "output": [
+        "NOT FOUND\n"
+      ],
+      "data": {
+        "array": "range(0, 43)",
+        "n": "43",
+        "k": "43"
+      }
+    }
+  ],
+  "code": "found = False\nfor item in array:\n    if item == k:\n        found = True\n        break\nprint(\"FOUND\" if found else \"NOT FOUND\")",
+  "title": "Find with Break"
+}

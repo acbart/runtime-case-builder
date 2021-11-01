@@ -1,0 +1,66 @@
+{
+  "inputs": [
+    {
+      "name": "n",
+      "type": "int"
+    },
+    {
+      "name": "numbers",
+      "type": "list[int]"
+    }
+  ],
+  "cases": [
+    {
+      "id": 2,
+      "name": "Regular",
+      "color": "#0033ff",
+      "generators": [
+        {
+          "id": 0,
+          "code": [
+            "1",
+            "[7]"
+          ]
+        },
+        {
+          "id": 1,
+          "code": [
+            "2",
+            "[1, 8]"
+          ]
+        },
+        {
+          "id": 2,
+          "code": [
+            "4",
+            "[1, 2, 3, 4]"
+          ]
+        },
+        {
+          "id": 3,
+          "code": [
+            "Make at least",
+            "three more cases! (replace this one!)"
+          ]
+        },
+        {
+          "id": 4,
+          "code": [
+            "",
+            ""
+          ]
+        },
+        {
+          "id": 5,
+          "code": [
+            "",
+            ""
+          ]
+        }
+      ]
+    }
+  ],
+  "instances": [],
+  "code": "def add_ends(values: [int]) -> int:\n    return values[0] + values[-1]\nprint(add_ends(numbers))",
+  "title": "Add Ends"
+}

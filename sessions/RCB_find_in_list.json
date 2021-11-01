@@ -1,0 +1,92 @@
+{
+  "inputs": [
+    {
+      "name": "n",
+      "type": "int"
+    },
+    {
+      "name": "numbers",
+      "type": "list[int]"
+    },
+    {
+      "name": "k",
+      "type": "int"
+    }
+  ],
+  "cases": [
+    {
+      "id": 2,
+      "name": "Regular",
+      "color": "#0008ff",
+      "generators": [
+        {
+          "id": 0,
+          "code": [
+            "5",
+            "[0, 1, 2, 3, 4]",
+            "2"
+          ]
+        },
+        {
+          "id": 1,
+          "code": [
+            "5",
+            "[0, 1, 2, 3, 4]",
+            ""
+          ]
+        },
+        {
+          "id": 2,
+          "code": [
+            "5",
+            "",
+            ""
+          ]
+        },
+        {
+          "id": 3,
+          "code": [
+            "7",
+            "",
+            ""
+          ]
+        },
+        {
+          "id": 4,
+          "code": [
+            "7",
+            "",
+            ""
+          ]
+        },
+        {
+          "id": 5,
+          "code": [
+            "10",
+            "",
+            ""
+          ]
+        },
+        {
+          "id": 6,
+          "code": [
+            "10",
+            "",
+            ""
+          ]
+        },
+        {
+          "id": 7,
+          "code": [
+            "10",
+            "",
+            ""
+          ]
+        }
+      ]
+    }
+  ],
+  "instances": [],
+  "code": "def find(values: [int], target: int):\n    result = None\n    for value in values:\n        if value == target:\n            result = value\n    return result\nprint(find(numbers, k))",
+  "title": "Find in List"
+}

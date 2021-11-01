@@ -1,0 +1,116 @@
+{
+  "inputs": [
+    {
+      "name": "n",
+      "type": "int"
+    }
+  ],
+  "cases": [
+    {
+      "id": 2,
+      "name": "Regular",
+      "color": "#0008ff",
+      "generators": [
+        {
+          "id": 0,
+          "code": [
+            "1"
+          ]
+        },
+        {
+          "id": 1,
+          "code": [
+            "3"
+          ]
+        },
+        {
+          "id": 2,
+          "code": [
+            "8"
+          ]
+        },
+        {
+          "id": 4,
+          "code": [
+            "27"
+          ]
+        },
+        {
+          "id": 5,
+          "code": [
+            "19"
+          ]
+        }
+      ]
+    }
+  ],
+  "instances": [
+    {
+      "fromCase": 2,
+      "fromGenerator": 0,
+      "value": 1,
+      "steps": 5,
+      "error": null,
+      "output": [
+        "7\n"
+      ],
+      "data": {
+        "n": "1"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 1,
+      "value": 3,
+      "steps": 5,
+      "error": null,
+      "output": [
+        "63\n"
+      ],
+      "data": {
+        "n": "3"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 2,
+      "value": 8,
+      "steps": 5,
+      "error": null,
+      "output": [
+        "448\n"
+      ],
+      "data": {
+        "n": "8"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 4,
+      "value": 27,
+      "steps": 5,
+      "error": null,
+      "output": [
+        "5103\n"
+      ],
+      "data": {
+        "n": "27"
+      }
+    },
+    {
+      "fromCase": 2,
+      "fromGenerator": 5,
+      "value": 19,
+      "steps": 5,
+      "error": null,
+      "output": [
+        "2527\n"
+      ],
+      "data": {
+        "n": "19"
+      }
+    }
+  ],
+  "code": "area = n * n\ndepth = 7\nvolume = area * depth\nprint(volume)",
+  "title": "Volume Calculation"
+}

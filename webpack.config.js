@@ -60,7 +60,6 @@ module.exports = {
         }),
         new CopyPlugin({
             patterns: [
-                {from: "libs/*.js"},
                 {from: "sessions/*.json"},
                 {from: "src/favicon.ico"}
             ],

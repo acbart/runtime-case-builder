@@ -1,46 +1,104 @@
 
 
-function evalLine(expression) {
-    Sk.globals = {'n': Sk.ffi.remapToPy(model.n())};
-    let code = "import random; import math; array = " + expression;
-    Sk.afterSingleExecution = null;
-    return Sk.misceval.asyncToPromise(() => {
-        return Sk.importMainWithBody("student", false, code, true).$d.array;
-    });
+// Pyodide-based execution engine
+// Lazily load Pyodide from CDN on first use
+let _pyodidePromise = null;
+
+function getPyodide() {
+    if (!_pyodidePromise) {
+        _pyodidePromise = loadPyodide().then((py) => {
+            // Pre-import standard modules used by student code
+            return py.runPythonAsync(`
+import sys, io, json, traceback, random, math
+from random import *
+`).then(() => py);
+        });
+    }
+    return _pyodidePromise;
 }
 
+// Python tracer script — runs once per countSteps call.
+// Uses sys.settrace to count every line executed in the student's code,
+// which gives accurate CPython-level step counts (not Skulpt approximations).
+// The user code is compiled with filename '_rcb_student' so we can filter
+// the tracer to only count lines from that file, ignoring the harness code.
+const TRACER_SCRIPT = `
+import sys, io, json, traceback, random, math
+from random import *
+
+_ns = {}
+_steps = 0
+_out_buf = io.StringIO()
+_err = None
+_data = {}
+
+try:
+    exec(_rcb_init, _ns)
+except Exception as _e:
+    _err = str(_e)
+
+if _err is None:
+    _user_code_obj = compile(_rcb_user, '_rcb_student', 'exec')
+
+    def _tracer(frame, event, arg):
+        global _steps
+        if event == 'line' and frame.f_code.co_filename == '_rcb_student':
+            _steps += 1
+        return _tracer
+
+    _old_stdout = sys.stdout
+    sys.stdout = _out_buf
+    sys.settrace(_tracer)
+    try:
+        exec(_user_code_obj, _ns)
+    except Exception as _e:
+        _err = traceback.format_exc()
+    finally:
+        sys.settrace(None)
+        sys.stdout = _old_stdout
+
+for _vn in list(_rcb_vars):
+    try:
+        _data[_vn] = repr(_ns.get(_vn))
+    except Exception:
+        _data[_vn] = '???'
+
+json.dumps({
+    'n': _ns.get('n', None),
+    'steps': _steps,
+    'output': _out_buf.getvalue(),
+    'error': _err,
+    'data': _data
+})
+`;
+
 export function countSteps(code, names, values, afterwards) {
-    let initializations = ["from random import *"];
-    for (let i=0; i<values.length; i+= 1) {
-        initializations.push(`${names[i]} = ${values[i]}`)
+    let initLines = ["from random import *", "import math"];
+    for (let i = 0; i < values.length; i++) {
+        initLines.push(`${names[i]} = ${values[i]}`);
     }
-    code = initializations.join("\n")+"\n##### START\n"+code;
-    var steps = 0;
-    var stdout = [];
-    Sk.output = (output) => {
-        stdout.push(output);
-    }
-    Sk.retainGlobals = false;
-    Sk.afterSingleExecution = function (globals, locals, line, column) {
-        if (line > initializations.length+1) {
-            steps += 1;
-        }
-    };
-    return Sk.misceval.asyncToPromise(() => {
-        return Sk.importMainWithBody("student", false, code, true);
-    }).then((result) => {
-        let values = {};
-        try {
-            names.map((name) => values[name] = Sk.ffi.remapToJs(result.$d[name].$r()));
-        } catch (e) {
-            values['ERROR'] = e;
-        }
-        if (!("n" in result.$d)) {
-            afterwards(0, null, stdout, "The variable n was not defined!", values);
+    const initCode = initLines.join("\n");
+
+    return getPyodide().then((py) => {
+        // Pass code strings via globals to avoid any escaping issues
+        py.globals.set('_rcb_init', initCode);
+        py.globals.set('_rcb_user', code);
+        py.globals.set('_rcb_vars', names);
+        return py.runPythonAsync(TRACER_SCRIPT);
+    }).then((resultJson) => {
+        const result = JSON.parse(resultJson);
+        const n = result.n;
+        const steps = result.steps;
+        const output = result.output;
+        const error = result.error;
+        const data = result.data;
+
+        if (n === null || n === undefined) {
+            afterwards(0, null, output, "The variable n was not defined!", data);
         } else {
-            afterwards(Sk.ffi.remapToJs(result.$d.n), steps, stdout, null, values);
+            afterwards(n, steps, output, error, data);
         }
-    }, (error) => {
-        afterwards(0, null, stdout, error, {});
+    }).catch((error) => {
+        afterwards(0, null, "", String(error), {});
     });
 }

@@ -129,6 +129,8 @@ export class Session {
         this.undoRemoveInstances = ko.observableArray([]);
         // Keep track of currently executing chunks
         this.queuedExecutions = ko.observableArray([]);
+        // How many times to run when using "Run × N"
+        this.runCount = ko.observable(5);
         // Observe the snippet of code we insert beforehand
         this.precode = ko.pureComputed({
             read:() => {
@@ -333,6 +335,32 @@ export class Session {
         }
     }
 
+    runGeneratorN(aCase, generator) {
+        const n = this.runCount();
+        const run = (remaining) => {
+            if (remaining <= 0) return;
+            this.runGenerator(aCase, generator).then(() => run(remaining - 1));
+        };
+        run(n);
+    }
+
+    runCaseN(aCase) {
+        const n = this.runCount();
+        const runAll = (i) => {
+            if (i <= 0) return;
+            const runCase = (gi) => {
+                let generators = aCase.generators();
+                if (gi < generators.length) {
+                    this.runGenerator(aCase, generators[gi]).then(() => runCase(gi + 1));
+                } else {
+                    runAll(i - 1);
+                }
+            };
+            runCase(0);
+        };
+        runAll(n);
+    }
+
     addInput() {
         let confirmed = true;
         if (this.instances().length > 0) {
@@ -389,6 +417,10 @@ export class Session {
 
     addGenerator(aCase) {
         aCase.generators.push(new Generator(null, this.inputs().map(i => ko.observable(DEFAULT_GENERATORS[i.type() || ""]))));
+    }
+
+    duplicateGenerator(aCase, generator) {
+        aCase.generators.push(new Generator(null, generator.code().map(c => ko.observable(c()))));
     }
 
     removeGenerator(aCase, generator) {
@@ -498,6 +530,11 @@ const SessionEditorHTML = `
     <button class="btn btn-primary m-2 mr-1" data-bind="click: session.loadJson.bind(session)">Load JSON</button><span>from previous work session</span><br>
     <button class="btn btn-sm btn-secondary m-2 mr-1"
         data-bind="click: () => editingInputs(!editingInputs())">Edit Input Parameters</button> to edit the prepended variables
+    <hr>
+    <label class="mt-2">Run count:
+        <input type="number" min="1" max="100" class="form-control d-inline-block ml-2" style="width:80px"
+            data-bind="value: session.runCount">
+    </label> <span class="text-muted small">times for "Run ×N" buttons</span>
 </div>
 
 </div>
@@ -534,6 +571,12 @@ const SessionEditorHTML = `
             <i class="fa fa-forward" aria-hidden="true" title="Run Case"></i>
             <span>Run entire case</span>
         </button>
+        <button class="btn btn-secondary btn-sm ml-1"
+            title="Run all generators N times"
+            data-bind="click: $root.session.runCaseN.bind($root.session)">
+            <i class="fa fa-redo" aria-hidden="true" title="Run Case N Times"></i>
+            <span>Run ×<span data-bind="text: $root.session.runCount"></span></span>
+        </button>
         <button class="btn btn-danger btn-sm ml-auto"
             data-bind="click: $root.session.removeCase.bind($root.session)">
             <i class="fa fa-trash-alt" aria-hidden="true" title="Remove Case"></i>
@@ -560,6 +603,18 @@ const SessionEditorHTML = `
                 data-bind="click: $root.session.runGenerator.bind($root.session, aCase)">
                 <i class="fa fa-play" aria-hidden="true" title="Run Generator"></i>
                 <span>Run this input</span>
+            </button>
+            <button class="btn btn-secondary btn-sm ml-1"
+                title="Run this input N times"
+                data-bind="click: $root.session.runGeneratorN.bind($root.session, aCase)">
+                <i class="fa fa-redo" aria-hidden="true" title="Run N Times"></i>
+                <span>Run ×<span data-bind="text: $root.session.runCount"></span></span>
+            </button>
+            <button class="btn btn-outline-secondary btn-sm ml-1"
+                title="Duplicate this input"
+                data-bind="click: $root.session.duplicateGenerator.bind($root.session, aCase)">
+                <i class="fa fa-copy" aria-hidden="true" title="Duplicate"></i>
+                <span>Duplicate</span>
             </button>
             
             <!-- Remove -->

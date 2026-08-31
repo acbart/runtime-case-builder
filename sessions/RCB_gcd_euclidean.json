@@ -1,0 +1,24 @@
+{
+  "inputs": [
+    {"name": "n", "type": "int"},
+    {"name": "a", "type": "int"},
+    {"name": "b", "type": "int"}
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "name": "Large numbers",
+      "color": "#007755",
+      "generators": [
+        {"id": 0, "code": ["10", "randint(1, 1000)", "randint(1, 1000)"]},
+        {"id": 1, "code": ["100", "randint(1, 10000)", "randint(1, 10000)"]},
+        {"id": 2, "code": ["1000", "randint(1, 100000)", "randint(1, 100000)"]},
+        {"id": 3, "code": ["10000", "randint(1, 1000000)", "randint(1, 1000000)"]},
+        {"id": 4, "code": ["100000", "randint(1, 100000000)", "randint(1, 100000000)"]}
+      ]
+    }
+  ],
+  "instances": [],
+  "code": "def gcd(a: int, b: int) -> int:\n    while b != 0:\n        a, b = b, a % b\n    return a\n\nprint(gcd(a, b))",
+  "title": "GCD (Euclidean Algorithm)"
+}

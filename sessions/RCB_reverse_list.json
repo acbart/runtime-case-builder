@@ -1,0 +1,22 @@
+{
+  "inputs": [
+    {"name": "n", "type": "int"},
+    {"name": "numbers", "type": "list[int]"}
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "name": "Random",
+      "color": "#9900cc",
+      "generators": [
+        {"id": 0, "code": ["randint(5,15)", "[randint(1,100) for i in range(n)]"]},
+        {"id": 1, "code": ["randint(20,40)", "[randint(1,100) for i in range(n)]"]},
+        {"id": 2, "code": ["randint(50,80)", "[randint(1,100) for i in range(n)]"]},
+        {"id": 3, "code": ["randint(90,120)", "[randint(1,100) for i in range(n)]"]}
+      ]
+    }
+  ],
+  "instances": [],
+  "code": "def reverse_list(values: list) -> list:\n    result = []\n    i = len(values) - 1\n    while i >= 0:\n        result.append(values[i])\n        i -= 1\n    return result\n\nprint(reverse_list(numbers))",
+  "title": "Reverse List"
+}

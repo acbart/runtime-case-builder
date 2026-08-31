@@ -1,0 +1,22 @@
+{
+  "inputs": [
+    {"name": "n", "type": "int"},
+    {"name": "text", "type": "str"}
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "name": "Random text",
+      "color": "#336699",
+      "generators": [
+        {"id": 0, "code": ["randint(10,20)", "''.join([chr(randint(97,122)) for i in range(n)])"]},
+        {"id": 1, "code": ["randint(30,50)", "''.join([chr(randint(97,122)) for i in range(n)])"]},
+        {"id": 2, "code": ["randint(80,120)", "''.join([chr(randint(97,122)) for i in range(n)])"]},
+        {"id": 3, "code": ["randint(200,300)", "''.join([chr(randint(97,122)) for i in range(n)])"]}
+      ]
+    }
+  ],
+  "instances": [],
+  "code": "def count_vowels(s: str) -> int:\n    count = 0\n    for ch in s:\n        if ch in 'aeiou':\n            count += 1\n    return count\n\nprint(count_vowels(text))",
+  "title": "Count Vowels in String"
+}

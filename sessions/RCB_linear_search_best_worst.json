@@ -1,0 +1,36 @@
+{
+  "inputs": [
+    {"name": "n", "type": "int"},
+    {"name": "numbers", "type": "list[int]"},
+    {"name": "target", "type": "int"}
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "name": "Best Case (found at start)",
+      "color": "#00bb00",
+      "generators": [
+        {"id": 0, "code": ["10", "[42] + [randint(1,10) for i in range(n-1)]", "42"]},
+        {"id": 1, "code": ["25", "[42] + [randint(1,10) for i in range(n-1)]", "42"]},
+        {"id": 2, "code": ["50", "[42] + [randint(1,10) for i in range(n-1)]", "42"]},
+        {"id": 3, "code": ["100", "[42] + [randint(1,10) for i in range(n-1)]", "42"]},
+        {"id": 4, "code": ["200", "[42] + [randint(1,10) for i in range(n-1)]", "42"]}
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Worst Case (not found)",
+      "color": "#dd0000",
+      "generators": [
+        {"id": 5, "code": ["10", "[randint(1,10) for i in range(n)]", "99"]},
+        {"id": 6, "code": ["25", "[randint(1,10) for i in range(n)]", "99"]},
+        {"id": 7, "code": ["50", "[randint(1,10) for i in range(n)]", "99"]},
+        {"id": 8, "code": ["100", "[randint(1,10) for i in range(n)]", "99"]},
+        {"id": 9, "code": ["200", "[randint(1,10) for i in range(n)]", "99"]}
+      ]
+    }
+  ],
+  "instances": [],
+  "code": "def linear_search(values: list, key: int) -> int:\n    for i in range(len(values)):\n        if values[i] == key:\n            return i\n    return -1\n\nprint(linear_search(numbers, target))",
+  "title": "Linear Search: Best vs Worst Case"
+}

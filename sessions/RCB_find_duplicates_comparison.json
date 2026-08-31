@@ -1,0 +1,22 @@
+{
+  "inputs": [
+    {"name": "n", "type": "int"},
+    {"name": "numbers", "type": "list[int]"}
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "name": "Naive O(n²)",
+      "color": "#dd0000",
+      "generators": [
+        {"id": 0, "code": ["randint(5,10)", "[randint(1,5) for i in range(n)]"]},
+        {"id": 1, "code": ["randint(15,25)", "[randint(1,10) for i in range(n)]"]},
+        {"id": 2, "code": ["randint(40,60)", "[randint(1,20) for i in range(n)]"]},
+        {"id": 3, "code": ["randint(80,100)", "[randint(1,30) for i in range(n)]"]}
+      ]
+    }
+  ],
+  "instances": [],
+  "code": "def has_duplicate_naive(values: list) -> bool:\n    for i in range(len(values)):\n        for j in range(i + 1, len(values)):\n            if values[i] == values[j]:\n                return True\n    return False\n\nprint(has_duplicate_naive(numbers))",
+  "title": "Duplicate Detection (Naive O(n²))"
+}

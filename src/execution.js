@@ -38,8 +38,13 @@ except Exception as _e:
     _err = str(_e)
 
 if _err is None:
-    _user_code_obj = compile(_rcb_user, '_rcb_student', 'exec')
+    try:
+        _user_code_obj = compile(_rcb_user, '_rcb_student', 'exec')
+    except SyntaxError as _e:
+        _err = str(_e)
+        _user_code_obj = None
 
+if _err is None and _user_code_obj is not None:
     def _tracer(frame, event, arg):
         global _steps
         if event == 'line' and frame.f_code.co_filename == '_rcb_student':

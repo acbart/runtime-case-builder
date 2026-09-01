@@ -1,0 +1,32 @@
+{
+  "inputs": [
+    {"name": "n", "type": "int"},
+    {"name": "text", "type": "str"}
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "name": "Palindromes",
+      "color": "#009933",
+      "generators": [
+        {"id": 0, "code": ["5", "'abcba'"]},
+        {"id": 1, "code": ["9", "'raceacar'[0:n]"]},
+        {"id": 2, "code": ["randint(10,20)", "'a'*(n//2) + 'b' + 'a'*(n//2)"]},
+        {"id": 3, "code": ["randint(30,60)", "'a'*(n//2) + 'b' + 'a'*(n//2)"]}
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Non-Palindromes",
+      "color": "#cc0000",
+      "generators": [
+        {"id": 4, "code": ["5", "'hello'"]},
+        {"id": 5, "code": ["randint(10,20)", "''.join([chr(97+i%26) for i in range(n)])"]},
+        {"id": 6, "code": ["randint(30,60)", "''.join([chr(97+i%26) for i in range(n)])"]}
+      ]
+    }
+  ],
+  "instances": [],
+  "code": "def is_palindrome(s: str) -> bool:\n    left = 0\n    right = len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n\nprint(is_palindrome(text))",
+  "title": "Palindrome Check"
+}

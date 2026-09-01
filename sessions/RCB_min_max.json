@@ -1,0 +1,22 @@
+{
+  "inputs": [
+    {"name": "n", "type": "int"},
+    {"name": "numbers", "type": "list[int]"}
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "name": "Random",
+      "color": "#ff6600",
+      "generators": [
+        {"id": 0, "code": ["randint(5,10)", "[randint(1,100) for i in range(n)]"]},
+        {"id": 1, "code": ["randint(15,30)", "[randint(1,100) for i in range(n)]"]},
+        {"id": 2, "code": ["randint(40,70)", "[randint(1,100) for i in range(n)]"]},
+        {"id": 3, "code": ["randint(80,150)", "[randint(1,100) for i in range(n)]"]}
+      ]
+    }
+  ],
+  "instances": [],
+  "code": "def find_min_max(values: list):\n    if not values:\n        return (None, None)\n    minimum = values[0]\n    maximum = values[0]\n    for value in values:\n        if value < minimum:\n            minimum = value\n        if value > maximum:\n            maximum = value\n    return (minimum, maximum)\n\nprint(find_min_max(numbers))",
+  "title": "Find Min and Max"
+}

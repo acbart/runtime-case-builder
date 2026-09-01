@@ -1,0 +1,36 @@
+{
+  "inputs": [
+    {"name": "n", "type": "int"},
+    {"name": "numbers", "type": "list[int]"},
+    {"name": "target", "type": "int"}
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "name": "Target found",
+      "color": "#0099cc",
+      "generators": [
+        {"id": 0, "code": ["10", "sorted([randint(1,50) for i in range(n)])", "25"]},
+        {"id": 1, "code": ["25", "sorted([randint(1,50) for i in range(n)])", "25"]},
+        {"id": 2, "code": ["50", "sorted([randint(1,50) for i in range(n)])", "25"]},
+        {"id": 3, "code": ["100", "sorted([randint(1,50) for i in range(n)])", "25"]},
+        {"id": 4, "code": ["200", "sorted([randint(1,50) for i in range(n)])", "25"]}
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Target not found",
+      "color": "#cc6600",
+      "generators": [
+        {"id": 5, "code": ["10", "sorted([randint(1,20) for i in range(n)])", "999"]},
+        {"id": 6, "code": ["25", "sorted([randint(1,20) for i in range(n)])", "999"]},
+        {"id": 7, "code": ["50", "sorted([randint(1,20) for i in range(n)])", "999"]},
+        {"id": 8, "code": ["100", "sorted([randint(1,20) for i in range(n)])", "999"]},
+        {"id": 9, "code": ["200", "sorted([randint(1,20) for i in range(n)])", "999"]}
+      ]
+    }
+  ],
+  "instances": [],
+  "code": "def two_sum_sorted(values: list, total: int):\n    left = 0\n    right = len(values) - 1\n    while left < right:\n        s = values[left] + values[right]\n        if s == total:\n            return (values[left], values[right])\n        elif s < total:\n            left += 1\n        else:\n            right -= 1\n    return None\n\nprint(two_sum_sorted(numbers, target))",
+  "title": "Two Sum (Sorted, Two Pointers)"
+}

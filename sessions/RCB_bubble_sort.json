@@ -1,0 +1,44 @@
+{
+  "inputs": [
+    {"name": "n", "type": "int"},
+    {"name": "numbers", "type": "list[int]"}
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "name": "Random (average case)",
+      "color": "#aa00ff",
+      "generators": [
+        {"id": 0, "code": ["randint(5,8)", "[randint(1,100) for i in range(n)]"]},
+        {"id": 1, "code": ["randint(10,15)", "[randint(1,100) for i in range(n)]"]},
+        {"id": 2, "code": ["randint(20,30)", "[randint(1,100) for i in range(n)]"]},
+        {"id": 3, "code": ["randint(40,60)", "[randint(1,100) for i in range(n)]"]}
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Already Sorted (best case)",
+      "color": "#00bb00",
+      "generators": [
+        {"id": 4, "code": ["randint(5,8)", "list(range(n))"]},
+        {"id": 5, "code": ["randint(10,15)", "list(range(n))"]},
+        {"id": 6, "code": ["randint(20,30)", "list(range(n))"]},
+        {"id": 7, "code": ["randint(40,60)", "list(range(n))"]}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Reverse Sorted (worst case)",
+      "color": "#dd0000",
+      "generators": [
+        {"id": 8, "code": ["randint(5,8)", "list(range(n, 0, -1))"]},
+        {"id": 9, "code": ["randint(10,15)", "list(range(n, 0, -1))"]},
+        {"id": 10, "code": ["randint(20,30)", "list(range(n, 0, -1))"]},
+        {"id": 11, "code": ["randint(40,60)", "list(range(n, 0, -1))"]}
+      ]
+    }
+  ],
+  "instances": [],
+  "code": "def bubble_sort(values: list) -> list:\n    arr = list(values)\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n - i - 1):\n            if arr[j] > arr[j + 1]:\n                arr[j], arr[j + 1] = arr[j + 1], arr[j]\n    return arr\n\nprint(bubble_sort(numbers))",
+  "title": "Bubble Sort"
+}

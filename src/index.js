@@ -16,18 +16,10 @@ import {removeXY} from './utilities';
 import {Session, Input, Case, Generator, Instance} from './models.js';
 
 function setup() {
-    // Configure Skulpt
-    Sk.configure({
-        __future__: Sk.python3,
-        //output: this.print.bind(this),
-        retainGlobals: false
-    });
-
     $(document).on('copy', function(e) {
         $('.no-copy').hide();
         setTimeout(function() { $('.no-copy').show(); });
     } );
-
 }
 
 export const CODE_MIRROR_READONLY_OPTIONS = {

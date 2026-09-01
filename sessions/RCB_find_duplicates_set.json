@@ -1,0 +1,22 @@
+{
+  "inputs": [
+    {"name": "n", "type": "int"},
+    {"name": "numbers", "type": "list[int]"}
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "name": "Set-based O(n)",
+      "color": "#0066dd",
+      "generators": [
+        {"id": 0, "code": ["randint(5,10)", "[randint(1,5) for i in range(n)]"]},
+        {"id": 1, "code": ["randint(15,25)", "[randint(1,10) for i in range(n)]"]},
+        {"id": 2, "code": ["randint(40,60)", "[randint(1,20) for i in range(n)]"]},
+        {"id": 3, "code": ["randint(80,100)", "[randint(1,30) for i in range(n)]"]}
+      ]
+    }
+  ],
+  "instances": [],
+  "code": "def has_duplicate_set(values: list) -> bool:\n    seen = set()\n    for value in values:\n        if value in seen:\n            return True\n        seen.add(value)\n    return False\n\nprint(has_duplicate_set(numbers))",
+  "title": "Duplicate Detection (Set O(n))"
+}

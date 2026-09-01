@@ -1,0 +1,25 @@
+{
+  "inputs": [
+    {"name": "n", "type": "int"}
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "name": "Naive Recursive",
+      "color": "#cc0000",
+      "generators": [
+        {"id": 0, "code": ["3"]},
+        {"id": 1, "code": ["5"]},
+        {"id": 2, "code": ["8"]},
+        {"id": 3, "code": ["10"]},
+        {"id": 4, "code": ["13"]},
+        {"id": 5, "code": ["15"]},
+        {"id": 6, "code": ["18"]},
+        {"id": 7, "code": ["20"]}
+      ]
+    }
+  ],
+  "instances": [],
+  "code": "def fib(n: int) -> int:\n    if n <= 1:\n        return n\n    return fib(n - 1) + fib(n - 2)\n\nprint(fib(n))",
+  "title": "Fibonacci (Naive Recursive)"
+}

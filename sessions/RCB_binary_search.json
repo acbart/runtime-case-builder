@@ -1,0 +1,40 @@
+{
+  "inputs": [
+    {"name": "n", "type": "int"},
+    {"name": "numbers", "type": "list[int]"},
+    {"name": "target", "type": "int"}
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "name": "Found (best/avg case)",
+      "color": "#0055ff",
+      "generators": [
+        {"id": 0, "code": ["8", "[i*2 for i in range(n)]", "n"]},
+        {"id": 1, "code": ["16", "[i*2 for i in range(n)]", "n"]},
+        {"id": 2, "code": ["32", "[i*2 for i in range(n)]", "n"]},
+        {"id": 3, "code": ["64", "[i*2 for i in range(n)]", "n"]},
+        {"id": 4, "code": ["128", "[i*2 for i in range(n)]", "n"]},
+        {"id": 5, "code": ["256", "[i*2 for i in range(n)]", "n"]},
+        {"id": 6, "code": ["512", "[i*2 for i in range(n)]", "n"]}
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Not Found (worst case)",
+      "color": "#ff4400",
+      "generators": [
+        {"id": 7, "code": ["8", "[i*2 for i in range(n)]", "-1"]},
+        {"id": 8, "code": ["16", "[i*2 for i in range(n)]", "-1"]},
+        {"id": 9, "code": ["32", "[i*2 for i in range(n)]", "-1"]},
+        {"id": 10, "code": ["64", "[i*2 for i in range(n)]", "-1"]},
+        {"id": 11, "code": ["128", "[i*2 for i in range(n)]", "-1"]},
+        {"id": 12, "code": ["256", "[i*2 for i in range(n)]", "-1"]},
+        {"id": 13, "code": ["512", "[i*2 for i in range(n)]", "-1"]}
+      ]
+    }
+  ],
+  "instances": [],
+  "code": "def binary_search(values: list, key: int) -> int:\n    low = 0\n    high = len(values) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if values[mid] == key:\n            return mid\n        elif values[mid] < key:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1\n\nprint(binary_search(numbers, target))",
+  "title": "Binary Search"
+}

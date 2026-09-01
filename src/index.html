@@ -72,7 +72,7 @@
                         <td data-bind="text: fromCase.name"></td>
                         <td data-bind="text: value"></td>
                         <td data-bind="text: steps"></td>
-                        <td data-bind="text: error() || output()"></td>
+                        <td><!-- ko if: error() --><span data-bind="text: error()"></span><!-- /ko --><!-- ko ifnot: error() --><!-- ko if: output() && output().trim() --><span data-bind="text: output()"></span><!-- /ko --><!-- ko ifnot: output() && output().trim() --><em>no printed output</em><!-- /ko --><!-- /ko --></td>
                         <td class="no-copy">
                             <button class="btn btn-danger btn-sm ml-auto no-copy"
                                 data-bind="click: $root.session.removeInstance.bind($root.session, $data)">
@@ -107,8 +107,7 @@
     </datalist>
 
 
-    <script src="libs/skulpt.js"></script>
-    <script src="libs/skulpt-stdlib.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
 
 </body>
 </html>

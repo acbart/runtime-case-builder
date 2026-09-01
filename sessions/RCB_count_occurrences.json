@@ -1,0 +1,23 @@
+{
+  "inputs": [
+    {"name": "n", "type": "int"},
+    {"name": "numbers", "type": "list[int]"},
+    {"name": "target", "type": "int"}
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "name": "Random list",
+      "color": "#0088ff",
+      "generators": [
+        {"id": 0, "code": ["randint(5,10)", "[randint(1,5) for i in range(n)]", "3"]},
+        {"id": 1, "code": ["randint(10,20)", "[randint(1,5) for i in range(n)]", "3"]},
+        {"id": 2, "code": ["randint(30,50)", "[randint(1,5) for i in range(n)]", "3"]},
+        {"id": 3, "code": ["randint(60,100)", "[randint(1,5) for i in range(n)]", "3"]}
+      ]
+    }
+  ],
+  "instances": [],
+  "code": "def count_occurrences(values: list, target: int) -> int:\n    count = 0\n    for value in values:\n        if value == target:\n            count += 1\n    return count\n\nprint(count_occurrences(numbers, target))",
+  "title": "Count Occurrences"
+}

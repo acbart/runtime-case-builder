@@ -4,9 +4,11 @@
   "description": "Build up your case for the runtime of an algorithm",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "webpack --mode=development",
-    "watch": "webpack serve --open"
+    "watch": "webpack serve --open",
+    "test:js": "jest tests/utilities.test.js tests/models.test.js tests/execution.test.js",
+    "test:py": "python3 -m pytest tests/test_step_counter.py -v"
   },
   "repository": {
     "type": "git",
@@ -22,16 +24,19 @@
     "@babel/core": "^7.12.16",
     "@babel/plugin-proposal-class-properties": "^7.12.13",
     "@babel/preset-env": "^7.12.16",
+    "@jest/globals": "^30.5.0",
+    "babel-jest": "^30.5.0",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^7.0.0",
-    "css-loader": "^5.0.2",
-    "file-loader": "^6.2.0",
+    "css-loader": "^6.11.0",
     "html-webpack-plugin": "^5.1.0",
+    "jest": "^30.5.0",
+    "jest-environment-jsdom": "^30.5.0",
     "sass": "^1.32.7",
     "sass-loader": "^11.0.1",
-    "style-loader": "^2.0.0",
-    "webpack": "^5.21.2",
+    "style-loader": "^3.3.4",
+    "webpack": "^5.110.2",
     "webpack-cli": "^4.5.0",
     "webpack-dev-server": "^3.11.2"
   },
@@ -45,5 +50,18 @@
     "jquery-ui": "^1.12.1",
     "knockout": "^3.5.1",
     "popper.js": "^1.16.1"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "testMatch": [
+      "**/tests/*.test.js"
+    ],
+    "moduleNameMapper": {
+      "\\.s?css$": "<rootDir>/tests/__mocks__/styleMock.js",
+      "\\.(ico|jpg|png|svg|woff|woff2|ttf|eot)$": "<rootDir>/tests/__mocks__/fileMock.js"
+    }
   }
 }

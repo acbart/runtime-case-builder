@@ -19,5 +19,6 @@
   ],
   "instances": [],
   "code": "def count_occurrences(values: list, target: int) -> int:\n    count = 0\n    for value in values:\n        if value == target:\n            count += 1\n    return count\n\nprint(count_occurrences(numbers, target))",
-  "title": "Count Occurrences"
+  "title": "Count Occurrences",
+  "complexity": "O(n)"
 }

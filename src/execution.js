@@ -77,7 +77,21 @@ json.dumps({
 })
 `;
 
+// Every run shares the one interpreter, passing its inputs through the same globals,
+// so runs have to be taken one at a time. Overlapping them (running two cases at once)
+// would let the second overwrite the first's inputs, and both would report the steps
+// for whichever code won the race.
+let _running = Promise.resolve();
+
 export function countSteps(code, names, values, afterwards) {
+    _running = _running.then(
+        () => runOne(code, names, values, afterwards),
+        () => runOne(code, names, values, afterwards)
+    );
+    return _running;
+}
+
+function runOne(code, names, values, afterwards) {
     let initLines = ["from random import *", "import math"];
     for (let i = 0; i < values.length; i++) {
         initLines.push(`${names[i]} = ${values[i]}`);

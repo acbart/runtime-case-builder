@@ -52,5 +52,6 @@
   ],
   "instances": [],
   "code": "result = 0\nfor i in range(n):\n    for j in range(i):\n        result += i * j\nprint(result)",
-  "title": "Nested Loop"
+  "title": "Nested Loop",
+  "complexity": "O(n²)"
 }

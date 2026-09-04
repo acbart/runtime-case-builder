@@ -18,5 +18,6 @@
   ],
   "instances": [],
   "code": "def has_duplicate_set(values: list) -> bool:\n    seen = set()\n    for value in values:\n        if value in seen:\n            return True\n        seen.add(value)\n    return False\n\nprint(has_duplicate_set(numbers))",
-  "title": "Duplicate Detection (Set O(n))"
+  "title": "Duplicate Detection (Set O(n))",
+  "complexity": "O(n)"
 }

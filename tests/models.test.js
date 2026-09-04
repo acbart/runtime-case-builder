@@ -627,3 +627,307 @@ describe('Session — runGenerator', () => {
         expect(countSteps.mock.calls.length).toBeGreaterThanOrEqual(1);
     });
 });
+
+// ──────────────────────────────────────────────────────────────
+// Session — filling empty cases
+// ──────────────────────────────────────────────────────────────
+
+describe('Session.fillEmptyCases', () => {
+    /** A session shaped like a lesson question: two empty cases, nothing to run. */
+    function loaded(file, {inputs = [{ name: 'n', type: 'int' }, { name: 'numbers', type: 'list[int]' }],
+        cases = [{ id: 0, name: 'Worst', color: '#FF0000', generators: [] },
+            { id: 1, name: 'Best', color: '#00FF00', generators: [] }],
+        title = 'Untitled'} = {}) {
+        const s = emptySession();
+        s.fromJson({ inputs, cases, instances: [], code: 'sum = 0', title }, file);
+        return s;
+    }
+
+    const codeOf = (aCase) => aCase.generators().map((g) => g.code().map((c) => c()));
+    const caseNamed = (s, name) => s.cases().find((c) => c.name() === name);
+
+    describe('a problem with curated cases', () => {
+        test('gives each case inputs written for that algorithm', () => {
+            const s = loaded('RCB_lesson_4_question_2.json');
+            const {filled, note} = s.fillEmptyCases();
+
+            expect(filled.sort()).toEqual(['Best', 'Worst']);
+            expect(note).toMatch(/loop always runs n times/);
+            // All odd, so the body of the if never runs
+            expect(codeOf(caseNamed(s, 'Best'))).toEqual([
+                ['10', '[1] * n'], ['20', '[1] * n'], ['40', '[1] * n'], ['80', '[1] * n'],
+            ]);
+            // All even, so it always does
+            expect(codeOf(caseNamed(s, 'Worst'))).toEqual([
+                ['10', '[2] * n'], ['20', '[2] * n'], ['40', '[2] * n'], ['80', '[2] * n'],
+            ]);
+        });
+
+        test('varies n itself when that is what the answer turns on', () => {
+            const s = loaded('RCB_lesson_4_question_3.json');
+            s.fillEmptyCases();
+            // An even n skips the loop, an odd n runs it
+            expect(codeOf(caseNamed(s, 'Best')).map((row) => row[0])).toEqual(['10', '20', '40', '80']);
+            expect(codeOf(caseNamed(s, 'Worst')).map((row) => row[0])).toEqual(['11', '21', '41', '81']);
+        });
+
+        test('gives both cases the same inputs when the runtime cannot vary', () => {
+            const s = loaded('RCB_lesson_4_question_4.json', { inputs: [{ name: 'n', type: 'int' }] });
+            const {note} = s.fillEmptyCases();
+            expect(codeOf(caseNamed(s, 'Best'))).toEqual(codeOf(caseNamed(s, 'Worst')));
+            expect(note).toMatch(/quadratic/);
+        });
+
+        test('creates a case the problem is missing, such as a worst case', () => {
+            const s = loaded('RCB_find_with_break.json', {
+                inputs: [{ name: 'n', type: 'int' }, { name: 'array', type: 'list[int]' }, { name: 'k', type: 'int' }],
+                cases: [{ id: 0, name: 'Best', color: '#00FF00', generators: [] }],
+            });
+            const {filled} = s.fillEmptyCases();
+
+            expect(filled).toEqual(['Best', 'Worst']);
+            expect(s.cases().map((c) => c.name())).toEqual(['Best', 'Worst']);
+            // Each input builds on the one before: array from n, then k from array
+            expect(codeOf(caseNamed(s, 'Best'))[0]).toEqual(['10', 'list(range(n))', 'array[0]']);
+            expect(codeOf(caseNamed(s, 'Worst'))[0]).toEqual(['10', 'list(range(n))', '-1']);
+        });
+
+        test('is found by title for a session opened from disk', () => {
+            const s = loaded(undefined, { title: 'Lesson 4 Question 6' });
+            const {note} = s.fillEmptyCases();
+            expect(note).toMatch(/negative number at the front/);
+            expect(codeOf(caseNamed(s, 'Best'))[0]).toEqual(['10', '[-1] + [1] * (n - 1)']);
+        });
+
+        test('falls back to suggestions when the problem no longer has those inputs', () => {
+            const s = loaded('RCB_lesson_4_question_2.json', {
+                inputs: [{ name: 'n', type: 'int' }, { name: 'numbers', type: 'list[int]' }, { name: 'extra', type: 'int' }],
+            });
+            const {filled, note} = s.fillEmptyCases();
+
+            expect(filled.sort()).toEqual(['Best', 'Worst']);
+            expect(note).toBe('');
+            codeOf(caseNamed(s, 'Best')).forEach((row) => expect(row).toHaveLength(3));
+        });
+
+        test('leaves a case the student has already filled in', () => {
+            const s = loaded('RCB_lesson_4_question_2.json');
+            s.addGenerator(caseNamed(s, 'Best'));
+            const {filled} = s.fillEmptyCases();
+
+            expect(filled).toEqual(['Worst']);
+            expect(caseNamed(s, 'Best').generators()).toHaveLength(1);
+            expect(caseNamed(s, 'Worst').generators()).toHaveLength(4);
+        });
+    });
+
+    describe('a problem with nothing curated', () => {
+        test('falls back to a spread of sizes from the declared types', () => {
+            const s = loaded('RCB_something_else.json');
+            const {filled, note} = s.fillEmptyCases();
+
+            expect(filled.sort()).toEqual(['Best', 'Worst']);
+            expect(note).toBe('');
+            expect(codeOf(caseNamed(s, 'Best'))).toEqual([
+                ['10', 'list(range(n))'], ['20', 'list(range(n))'],
+                ['40', 'list(range(n))'], ['80', 'list(range(n))'],
+            ]);
+        });
+
+        test('suggests the same values every time, so a re-run plots the same point', () => {
+            const first = loaded('RCB_something_else.json');
+            const second = loaded('RCB_something_else.json');
+            first.fillEmptyCases();
+            second.fillEmptyCases();
+            expect(codeOf(caseNamed(first, 'Best'))).toEqual(codeOf(caseNamed(second, 'Best')));
+        });
+
+        test('creates a Best and a Worst case when there are none at all', () => {
+            const s = loaded('RCB_something_else.json', { inputs: [{ name: 'n', type: 'int' }], cases: [] });
+            expect(s.fillEmptyCases().filled).toEqual(['Best', 'Worst']);
+            expect(s.cases().map((c) => c.name())).toEqual(['Best', 'Worst']);
+            expect(s.cases()[0].color()).not.toBe(s.cases()[1].color());
+        });
+    });
+
+    test('does nothing when there is nothing to generate from', () => {
+        const s = loaded('RCB_lesson_4_question_2.json', { inputs: [] });
+        expect(s.fillEmptyCases()).toEqual({ filled: [], note: '' });
+    });
+
+    test('does nothing when every case is already filled', () => {
+        const s = loaded('RCB_lesson_4_question_2.json');
+        s.fillEmptyCases();
+        expect(s.fillEmptyCases().filled).toEqual([]);
+        s.cases().forEach((c) => expect(c.generators()).toHaveLength(4));
+    });
+
+    test('does not run anything', () => {
+        const s = loaded('RCB_lesson_4_question_2.json');
+        countSteps.mockClear();
+        s.fillEmptyCases();
+        expect(s.instances()).toHaveLength(0);
+        expect(countSteps).not.toHaveBeenCalled();
+    });
+
+    test('generator ids stay unique so instances can be traced back', () => {
+        const s = loaded('RCB_lesson_4_question_2.json');
+        s.fillEmptyCases();
+        const ids = s.cases().flatMap((c) => c.generators().map((g) => g.id));
+        expect(new Set(ids).size).toBe(ids.length);
+    });
+});
+
+// ──────────────────────────────────────────────────────────────
+// Session — loadedFrom / hasUnsavedWork
+// ──────────────────────────────────────────────────────────────
+
+describe('Session.loadedFrom', () => {
+    const DATA = { inputs: [], cases: [], instances: [], code: 'x = 1', title: 'T' };
+
+    test('is empty for a session loaded without a source file', () => {
+        const s = emptySession();
+        s.fromJson(DATA);
+        expect(s.loadedFrom()).toBe('');
+    });
+
+    test('records the example file a session was loaded from', () => {
+        const s = emptySession();
+        s.fromJson(DATA, 'RCB_binary_search.json');
+        expect(s.loadedFrom()).toBe('RCB_binary_search.json');
+    });
+
+    test('clears again when a session is then loaded from disk', () => {
+        const s = emptySession();
+        s.fromJson(DATA, 'RCB_binary_search.json');
+        s.fromJson(DATA);
+        expect(s.loadedFrom()).toBe('');
+    });
+
+    test('is not part of the saved JSON', () => {
+        const s = emptySession();
+        s.fromJson(DATA, 'RCB_binary_search.json');
+        expect(Object.keys(s.toJson()).sort()).toEqual(['cases', 'code', 'inputs', 'instances', 'title']);
+    });
+});
+
+describe('Instance output normalization', () => {
+    test('an output saved as an array of lines becomes a string', () => {
+        const c = makeCase('W');
+        const g = makeGenerator(['5']);
+        const inst = Instance.fromJson(
+            { fromCase: c.id, fromGenerator: g.id, value: 1, steps: 5, error: null, output: ['7\n'], data: {} },
+            { [c.id]: c }, { [g.id]: g },
+        );
+        expect(inst.output()).toBe('7\n');
+        expect(() => inst.output().trim()).not.toThrow();
+    });
+
+    test('a missing output becomes the empty string, so the table shows "no printed output"', () => {
+        const c = makeCase('W');
+        const g = makeGenerator(['5']);
+        const inst = makeInstance(c, g, 1, 5, null, null, {});
+        expect(inst.output()).toBe('');
+    });
+
+    test('saving normalizes the stored shape', () => {
+        const c = makeCase('W');
+        const g = makeGenerator(['5']);
+        const inst = makeInstance(c, g, 1, 5, null, ['a\n', 'b\n'], {});
+        expect(inst.toJson().output).toBe('a\nb\n');
+    });
+});
+
+describe('Session.fromJson robustness', () => {
+    test('drops instances whose case or generator is missing, keeping the rest', () => {
+        const s = emptySession();
+        s.fromJson({
+            inputs: [{ name: 'n', type: 'int' }],
+            cases: [{ id: 0, name: 'W', color: '#FF0000', generators: [{ id: 0, code: ['5'] }] }],
+            instances: [
+                { fromCase: 0, fromGenerator: 0, value: 5, steps: 1, error: null, output: '', data: {} },
+                { fromCase: 9, fromGenerator: 0, value: 5, steps: 1, error: null, output: '', data: {} },
+                { fromCase: 0, fromGenerator: 9, value: 5, steps: 1, error: null, output: '', data: {} },
+            ],
+            code: 'x = 1',
+            title: 'T',
+        });
+        expect(s.instances()).toHaveLength(1);
+        expect(s.instances()[0].fromCase).toBe(s.cases()[0]);
+    });
+
+    test('leaves the open session untouched when the new one is malformed', () => {
+        const s = emptySession();
+        s.fromJson({ inputs: [], cases: [], instances: [], code: 'good = 1', title: 'Good' }, 'RCB_good.json');
+
+        expect(() => s.fromJson({ inputs: [{ name: 'n', type: 'int' }], cases: [{ id: 0, name: 'W', color: '#F00' }] }))
+            .toThrow();
+
+        expect(s.title()).toBe('Good');
+        expect(s.code()).toBe('good = 1');
+        expect(s.loadedFrom()).toBe('RCB_good.json');
+    });
+});
+
+describe('Session.hasUnsavedWork', () => {
+    const DATA = { inputs: [], cases: [], instances: [], code: 'x = 1', title: 'T' };
+
+    test('is false for a freshly loaded session', () => {
+        const s = emptySession();
+        s.fromJson(DATA);
+        expect(s.hasUnsavedWork()).toBe(false);
+    });
+
+    test('is false for a session that came with its own plotted instances', () => {
+        const s = emptySession();
+        s.fromJson({
+            inputs: [{ name: 'n', type: 'int' }],
+            cases: [{ id: 0, name: 'W', color: '#FF0000', generators: [{ id: 0, code: ['5'] }] }],
+            instances: [{ fromCase: 0, fromGenerator: 0, value: 5, steps: 1, error: null, output: '', data: {} }],
+            code: 'x = 1',
+            title: 'T',
+        });
+        expect(s.instances()).toHaveLength(1);
+        expect(s.hasUnsavedWork()).toBe(false);
+    });
+
+    test('is true once one of those saved instances is deleted', () => {
+        const s = emptySession();
+        s.fromJson({
+            inputs: [{ name: 'n', type: 'int' }],
+            cases: [{ id: 0, name: 'W', color: '#FF0000', generators: [{ id: 0, code: ['5'] }] }],
+            instances: [{ fromCase: 0, fromGenerator: 0, value: 5, steps: 1, error: null, output: '', data: {} }],
+            code: 'x = 1',
+            title: 'T',
+        });
+        s.removeInstance(s.instances()[0]);
+        expect(s.hasUnsavedWork()).toBe(true);
+    });
+
+    test('is true once the code is edited, and false again if it is put back', () => {
+        const s = emptySession();
+        s.fromJson(DATA);
+        s.code('x = 2');
+        expect(s.hasUnsavedWork()).toBe(true);
+        s.code('x = 1');
+        expect(s.hasUnsavedWork()).toBe(false);
+    });
+
+    test('is true once an instance has been plotted', () => {
+        const s = emptySession();
+        s.fromJson(DATA);
+        const c = makeCase('W');
+        const g = makeGenerator(['5']);
+        s.cases.push(c);
+        s.instances.push(makeInstance(c, g));
+        expect(s.hasUnsavedWork()).toBe(true);
+    });
+
+    test('resets when another session is loaded over the top', () => {
+        const s = emptySession();
+        s.fromJson(DATA);
+        s.code('x = 2');
+        s.fromJson({ ...DATA, code: 'y = 9' }, 'RCB_other.json');
+        expect(s.hasUnsavedWork()).toBe(false);
+    });
+});

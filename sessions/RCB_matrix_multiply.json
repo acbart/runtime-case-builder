@@ -19,5 +19,6 @@
   ],
   "instances": [],
   "code": "def make_matrix(size: int) -> list:\n    return [[i * size + j for j in range(size)] for i in range(size)]\n\ndef matrix_multiply(A: list, B: list) -> list:\n    size = len(A)\n    C = [[0] * size for _ in range(size)]\n    for i in range(size):\n        for j in range(size):\n            for k in range(size):\n                C[i][j] += A[i][k] * B[k][j]\n    return C\n\nA = make_matrix(n)\nB = make_matrix(n)\nresult = matrix_multiply(A, B)\nprint(result[0][0])",
-  "title": "Matrix Multiplication (O(n³))"
+  "title": "Matrix Multiplication (O(n³))",
+  "complexity": "O(n³)"
 }

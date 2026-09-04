@@ -185,4 +185,70 @@ describe('countSteps JS wrapper', () => {
         await result;
         expect(cb).toHaveBeenCalledTimes(1);
     });
+
+    // ── Runs share one interpreter, so they must not overlap ─────────────────
+
+    /**
+     * Answers a run based on the inputs it set. Pyodide's own one-time preamble
+     * import runs before any inputs exist, so it is answered separately.
+     */
+    function respondByInputs(handler) {
+        pyMock.runPythonAsync.mockImplementation(() => {
+            const init = pyMock.globals.get('_rcb_init');
+            return init === undefined ? Promise.resolve(null) : handler(init);
+        });
+    }
+
+    const inputLine = (init) => init.split('\n').pop();
+
+    test('runs started together are taken one at a time', async () => {
+        // Record what the interpreter held when each run started and finished
+        const seen = [];
+        respondByInputs((init) => new Promise((resolve) => setTimeout(() => {
+            seen.push([init, pyMock.globals.get('_rcb_init')]);
+            resolve(makeResult());
+        }, 5)));
+
+        await Promise.all([
+            countSteps('x = 1', ['n'], ['10'], jest.fn()),
+            countSteps('x = 1', ['n'], ['20'], jest.fn()),
+            countSteps('x = 1', ['n'], ['40'], jest.fn()),
+        ]);
+
+        expect(seen).toHaveLength(3);
+        // Nothing overwrote a run's inputs while it was still going
+        seen.forEach(([whenStarted, whenFinished]) => expect(whenFinished).toBe(whenStarted));
+        expect(seen.map(([init]) => inputLine(init))).toEqual(['n = 10', 'n = 20', 'n = 40']);
+    });
+
+    test('each queued run reports its own result', async () => {
+        respondByInputs((init) => Promise.resolve(
+            makeResult({steps: inputLine(init) === 'n = 10' ? 100 : 200})));
+        const first = jest.fn();
+        const second = jest.fn();
+
+        await Promise.all([
+            countSteps('x = 1', ['n'], ['10'], first),
+            countSteps('x = 1', ['n'], ['20'], second),
+        ]);
+
+        expect(first.mock.calls[0][1]).toBe(100);
+        expect(second.mock.calls[0][1]).toBe(200);
+    });
+
+    test('a failed run does not stop the ones behind it', async () => {
+        respondByInputs((init) => (inputLine(init) === 'n = 10'
+            ? Promise.reject(new Error('boom'))
+            : Promise.resolve(makeResult({steps: 7}))));
+        const failed = jest.fn();
+        const after = jest.fn();
+
+        await Promise.all([
+            countSteps('x = 1', ['n'], ['10'], failed),
+            countSteps('x = 1', ['n'], ['20'], after),
+        ]);
+
+        expect(failed).toHaveBeenCalledWith(0, null, '', expect.stringContaining('boom'), {});
+        expect(after).toHaveBeenCalledWith(5, 7, '', null, {});
+    });
 });

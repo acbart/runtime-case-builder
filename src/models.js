@@ -1,6 +1,8 @@
 import ko from "knockout";
 import {countSteps} from './execution';
-import {promptJsonFile} from "./utilities";
+import {normalizeOutput, promptJsonFile} from "./utilities";
+import {suggestGenerators} from "./suggested-inputs";
+import {findCuratedCases, BEST_COLOR, WORST_COLOR} from "./curated-cases";
 
 // TODO: Duplicate button
 // TODO: Auto load from parameters
@@ -90,7 +92,8 @@ export class Instance {
         this.value = ko.observable(value);
         this.steps = ko.observable(steps);
         this.error = ko.observable(error);
-        this.output = ko.observable(output);
+        // Always a string, including for sessions saved as an array of lines
+        this.output = ko.observable(normalizeOutput(output));
         this.data = ko.observable(data);
     }
 
@@ -124,6 +127,15 @@ export class Session {
         this.instances = ko.observableArray(instances);
         this.code = ko.observable(code);
         this.title = ko.observable(title);
+        // Name of the file in sessions/ this session came from, or "" when it is the
+        // built-in starter or was loaded from the user's own disk. Drives the
+        // "Load example" dropdown so it shows what is currently open.
+        this.loadedFrom = ko.observable("");
+        // The code as it stood when this session was loaded, so edits can be spotted
+        this.loadedCode = ko.observable(code);
+        // How many instances came with the session, so its own plotted points are not
+        // mistaken for work the student has done since
+        this.loadedInstanceCount = ko.observable((instances || []).length);
 
         // Keep a simple undo queue
         this.undoRemoveInstances = ko.observableArray([]);
@@ -198,24 +210,54 @@ export class Session {
         });
     }
 
-    fromJson(data) {
-        this.instances.removeAll();
-        this.cases.removeAll();
-        this.inputs.removeAll();
-
-        ko.utils.arrayPushAll(this.inputs, data.inputs.map(i => Input.fromJson(i)));
-        ko.utils.arrayPushAll(this.cases, data.cases.map(c => Case.fromJson(c)));
+    /**
+     * Replaces everything with the given session data. `source` is the file in
+     * sessions/ it came from; leave it out for a session loaded from disk.
+     */
+    fromJson(data, source) {
+        // Build everything before touching the page, so a session that turns out to
+        // be malformed leaves the current one intact instead of half-replacing it.
+        let inputs = (data.inputs || []).map(i => Input.fromJson(i));
+        let cases = (data.cases || []).map(c => Case.fromJson(c));
         let cs = {}, gs = {};
-        this.cases().map((c) => {
+        cases.map((c) => {
             cs[c.id] = c;
             c.generators().map(g => {
                 gs[g.id] = g;
             });
         });
-        ko.utils.arrayPushAll(this.instances, data.instances.map(i => Instance.fromJson(i, cs, gs)));
+        let instances = [];
+        (data.instances || []).map((i) => {
+            if (cs[i.fromCase] === undefined || gs[i.fromGenerator] === undefined) {
+                // A plotted point whose case or generator is gone cannot be drawn
+                console.warn("Skipping an instance with no matching case or generator", i);
+            } else {
+                instances.push(Instance.fromJson(i, cs, gs));
+            }
+        });
+
+        this.instances.removeAll();
+        this.cases.removeAll();
+        this.inputs.removeAll();
+
+        ko.utils.arrayPushAll(this.inputs, inputs);
+        ko.utils.arrayPushAll(this.cases, cases);
+        ko.utils.arrayPushAll(this.instances, instances);
 
         this.title(data.title);
         this.code(data.code);
+        this.loadedCode(data.code);
+        this.loadedInstanceCount(instances.length);
+        this.loadedFrom(source || "");
+    }
+
+    /**
+     * True once the student has run or deleted something, or edited the code, since
+     * this session loaded. Instances that came with the session do not count.
+     */
+    hasUnsavedWork() {
+        return this.instances().length !== this.loadedInstanceCount()
+            || this.code() !== this.loadedCode();
     }
 
     createReport() {
@@ -419,6 +461,70 @@ export class Session {
         aCase.generators.push(new Generator(null, this.inputs().map(i => ko.observable(DEFAULT_GENERATORS[i.type() || ""]))));
     }
 
+    /** The cases that have no inputs to run yet. */
+    emptyCases() {
+        return this.cases().filter(aCase => aCase.generators().length === 0);
+    }
+
+    /** Adds one generator per row of code strings to a case. */
+    fillCase(aCase, rows) {
+        rows.map((code) => {
+            aCase.generators.push(new Generator(null, code.map(c => ko.observable(c))));
+        });
+    }
+
+    /**
+     * Gives every empty case inputs to run, so a problem that arrives with nothing in
+     * its cases is ready to demonstrate. Problems with curated cases (the lesson
+     * questions) get inputs written against the algorithm, which really are its best
+     * and worst cases; anything else falls back to a spread of sizes by input type.
+     *
+     * Cases that already have inputs are left alone, and nothing is run: the Run
+     * buttons are still the student's to press.
+     *
+     * Returns `{filled, note}`: the names of the cases filled in, and what the curated
+     * inputs are meant to show, if anything.
+     */
+    fillEmptyCases() {
+        if (this.inputs().length === 0) {
+            return {filled: [], note: ""};
+        }
+        let filled = [];
+        let note = "";
+        const curated = findCuratedCases(this.loadedFrom(), this.title());
+        const arity = this.inputs().length;
+        // Only usable while it still lines up with the inputs the session declares
+        const usable = curated !== null
+            && curated.cases.every(c => c.generators.every(row => row.length === arity));
+
+        if (usable) {
+            note = curated.note || "";
+            curated.cases.map((wanted) => {
+                let aCase = this.cases().find(c =>
+                    c.name().trim().toLowerCase() === wanted.name.toLowerCase());
+                if (aCase === undefined) {
+                    aCase = new Case(null, wanted.name, wanted.color, []);
+                    this.cases.push(aCase);
+                } else if (aCase.generators().length > 0) {
+                    return; // the student has already put something here
+                }
+                this.fillCase(aCase, wanted.generators);
+                filled.push(aCase.name());
+            });
+        }
+
+        if (this.cases().length === 0) {
+            this.cases.push(new Case(null, "Best", BEST_COLOR, []));
+            this.cases.push(new Case(null, "Worst", WORST_COLOR, []));
+        }
+        // Whatever the curated entry did not cover
+        this.emptyCases().map((aCase) => {
+            this.fillCase(aCase, suggestGenerators(this.inputs()));
+            filled.push(aCase.name());
+        });
+        return {filled, note};
+    }
+
     duplicateGenerator(aCase, generator) {
         aCase.generators.push(new Generator(null, generator.code().map(c => ko.observable(c()))));
     }
@@ -452,10 +558,13 @@ const SessionEditorHTML = `
         data-bind="value: session.title">
     </div>
     <h4>Instructions</h4>
-    <p>This tool let's you analyze the runtime of an algorithm by creating input cases.</p>
+    <p>This tool let's you analyze the runtime of an algorithm by creating input cases.
+    The page opens with a <strong>Linear Search</strong> starter that already has a <strong>Best</strong> and a <strong>Worst</strong> case,
+    so you can press <strong>Run entire case</strong> on each and compare them right away.
+    Or use <strong>Load example</strong> in the Controls box to pick one of the curated sessions, grouped by complexity class.</p>
     <ol>
         <li>First, check over the <strong>Algorithm</strong> directly below. Note the first few lines are not editable; these will be prepended to the algorithm with appropriate inputs.</li>
-        <li>Then, add new <strong>Cases</strong> of input; each case can have one or more input generators. These generators are Python snippets that will be input to the algorithm.</li>
+        <li>Then, add new <strong>Cases</strong> of input; each case can have one or more input generators. These generators are Python snippets that will be input to the algorithm. If a case is empty, pressing <kbd>Ctrl</kbd>+<kbd>I</kbd> twice fills in a range of example inputs for you to edit; it never runs them.</li>
         <li>Next, use the <strong>Run</strong> buttons to send an input through the algorithm, and the tool will track how many steps it took.</li>
         <li>After execution finishes, observe that the number of steps has been plotted as a function of the input named <code>n</code> to produce a <strong>Time Analysis Plot</strong> in the bottom left.</li>
         <li>Additionally, you can observe the <strong>Plotted Instances</strong> log in the bottom right that has all the executions along with their <code>n</code> (input size), number of steps taken, and their output (including any errors produced).</li>
@@ -525,6 +634,8 @@ const SessionEditorHTML = `
 <div class="col-md-4 border p-2 bg-background">
     <h4>Controls</h4>
     <p>Use these to save and load your current work session, to load a teacher provided session, or create a report for submission.</p>
+    <example-picker params="examples: $root.examples, selectedExample: $root.selectedExample"></example-picker>
+    <hr>
     <button class="btn btn-primary m-2 mr-1" data-bind="click: session.createReport.bind(session)">Create Report</button><span>to copy/paste into Docs</span><br>
     <button class="btn btn-primary m-2 mr-1" data-bind="click: session.saveJson.bind(session)">Save JSON</button><span>to be able to load later</span><br>
     <button class="btn btn-primary m-2 mr-1" data-bind="click: session.loadJson.bind(session)">Load JSON</button><span>from previous work session</span><br>
@@ -543,7 +654,11 @@ const SessionEditorHTML = `
 <div class="row bg-background border pl-2 pb-2">
 <div class="col-md">
 <h4 class="mt-4">Cases</h4>
-<p>Create cases and generators below, then run them through the algorithm to plot instances.</p>
+<p>Create cases and generators below, then run them through the algorithm to plot instances.
+When a case has no inputs yet, press <kbd>Ctrl</kbd>+<kbd>I</kbd> twice to fill it with example inputs to edit.</p>
+<!-- ko if: $root.hint -->
+<div class="alert alert-info py-2 mb-2" role="status" data-bind="text: $root.hint"></div>
+<!-- /ko -->
 <div data-bind="foreach: {data: session.cases, as: 'aCase'}">
     <div class="border p-2 mb-2 cases-area bg-white">
     <form class="form-inline mb-2">

@@ -18,5 +18,6 @@
   ],
   "instances": [],
   "code": "def reverse_list(values: list) -> list:\n    result = []\n    i = len(values) - 1\n    while i >= 0:\n        result.append(values[i])\n        i -= 1\n    return result\n\nprint(reverse_list(numbers))",
-  "title": "Reverse List"
+  "title": "Reverse List",
+  "complexity": "O(n)"
 }

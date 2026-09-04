@@ -1,7 +1,31 @@
 /**
  * Tests for the removeXY utility function.
  */
-import { removeXY } from '../src/utilities.js';
+import { removeXY, normalizeOutput } from '../src/utilities.js';
+
+describe('normalizeOutput', () => {
+    test('joins the array of lines that older sessions saved', () => {
+        expect(normalizeOutput(['7\n'])).toBe('7\n');
+        expect(normalizeOutput(['a\n', 'b\n'])).toBe('a\nb\n');
+    });
+
+    test('leaves a string alone', () => {
+        expect(normalizeOutput('hello\n')).toBe('hello\n');
+        expect(normalizeOutput('')).toBe('');
+    });
+
+    test('turns nothing into the empty string', () => {
+        expect(normalizeOutput(null)).toBe('');
+        expect(normalizeOutput(undefined)).toBe('');
+        expect(normalizeOutput([])).toBe('');
+    });
+
+    test('always returns something the table can call .trim() on', () => {
+        [['7\n'], 'x', null, undefined, 42, []].forEach((value) => {
+            expect(() => normalizeOutput(value).trim()).not.toThrow();
+        });
+    });
+});
 
 describe('removeXY', () => {
     test('removes the first point matching x and y', () => {

@@ -25,5 +25,6 @@
   ],
   "instances": [],
   "code": "sum = 0\nif n % 2:\n    for number in numbers:\n        sum += number\nprint(sum)",
-  "title": "Lesson 4 Question 3"
+  "title": "Lesson 4 Question 3",
+  "collection": "Lesson 4"
 }

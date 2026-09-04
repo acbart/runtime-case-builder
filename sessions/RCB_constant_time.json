@@ -21,5 +21,6 @@
   ],
   "instances": [],
   "code": "def first_and_last(values: list) -> tuple:\n    if not values:\n        return (None, None)\n    return (values[0], values[-1])\n\nresult = first_and_last(numbers)\nprint(result)",
-  "title": "Constant Time (First and Last)"
+  "title": "Constant Time (First and Last)",
+  "complexity": "O(1)"
 }

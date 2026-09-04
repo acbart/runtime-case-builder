@@ -588,5 +588,6 @@
     }
   ],
   "code": "found = False\nfor item in array:\n    if item == k:\n        found = True\n        break\nprint(\"FOUND\" if found else \"NOT FOUND\")",
-  "title": "Find with Break"
+  "title": "Find with Break",
+  "complexity": "O(n)"
 }

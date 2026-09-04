@@ -18,5 +18,6 @@
   ],
   "instances": [],
   "code": "def find_min_max(values: list):\n    if not values:\n        return (None, None)\n    minimum = values[0]\n    maximum = values[0]\n    for value in values:\n        if value < minimum:\n            minimum = value\n        if value > maximum:\n            maximum = value\n    return (minimum, maximum)\n\nprint(find_min_max(numbers))",
-  "title": "Find Min and Max"
+  "title": "Find Min and Max",
+  "complexity": "O(n)"
 }

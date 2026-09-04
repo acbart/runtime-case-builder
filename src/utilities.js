@@ -8,6 +8,23 @@ export function removeXY(arr, x, y) {
     return arr;
 }
 
+/**
+ * The text an instance printed, always as a string.
+ *
+ * Sessions saved by older versions of this tool store the output as an array of
+ * lines, and the instances table calls .trim() on it, so an array reaches the
+ * page as a crash that stops the whole session from loading.
+ */
+export function normalizeOutput(output) {
+    if (Array.isArray(output)) {
+        return output.join("");
+    }
+    if (output === null || output === undefined) {
+        return "";
+    }
+    return typeof output === "string" ? output : String(output);
+}
+
 export function promptJsonFile() {
     let input = document.createElement("input");
     input.type = "file";

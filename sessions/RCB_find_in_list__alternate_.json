@@ -143,5 +143,6 @@
   ],
   "instances": [],
   "code": "def find(values: [int], target: int):\n    for value in values:\n        if value == target:\n            return value\n    return None\nprint(find(numbers, k))",
-  "title": "Find in List (Alternate)"
+  "title": "Find in List (Alternate)",
+  "complexity": "O(n)"
 }

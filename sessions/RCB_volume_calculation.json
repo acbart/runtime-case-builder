@@ -112,5 +112,6 @@
     }
   ],
   "code": "area = n * n\ndepth = 7\nvolume = area * depth\nprint(volume)",
-  "title": "Volume Calculation"
+  "title": "Volume Calculation",
+  "complexity": "O(1)"
 }

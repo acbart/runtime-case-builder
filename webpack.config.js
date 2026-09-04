@@ -3,6 +3,7 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const {SessionIndexPlugin} = require('./scripts/session-index');
 const dev = process.env.NODE_ENV !== 'production'
 mode = process.env.NODE_ENV || 'development'
 
@@ -62,6 +63,8 @@ module.exports = {
                 {from: "src/favicon.ico"}
             ],
         }),
+        // Generates sessions/index.json (grouped by complexity class) for the "Load example" dropdown
+        new SessionIndexPlugin({sessionsDir: path.resolve(__dirname, 'sessions')}),
         new HtmlWebpackPlugin({
             template: 'src/index.html',
             title: 'Runtime Case Builder',

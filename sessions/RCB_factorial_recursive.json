@@ -21,5 +21,6 @@
   ],
   "instances": [],
   "code": "def factorial(n: int) -> int:\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)\n\nprint(factorial(n))",
-  "title": "Recursive Factorial"
+  "title": "Recursive Factorial",
+  "complexity": "O(n)"
 }

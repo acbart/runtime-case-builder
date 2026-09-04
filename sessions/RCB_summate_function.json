@@ -539,5 +539,6 @@
     }
   ],
   "code": "def summate(values: [int]) -> int:\n    total = 0\n    for value in values:\n        total = total + value\n    return total\n\nprint(summate(numbers))",
-  "title": "Summate Function"
+  "title": "Summate Function",
+  "complexity": "O(n)"
 }

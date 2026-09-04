@@ -88,5 +88,6 @@
   ],
   "instances": [],
   "code": "def find(values: [int], target: int):\n    result = None\n    for value in values:\n        if value == target:\n            result = value\n    return result\nprint(find(numbers, k))",
-  "title": "Find in List"
+  "title": "Find in List",
+  "complexity": "O(n)"
 }

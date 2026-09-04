@@ -40,5 +40,6 @@
   ],
   "instances": [],
   "code": "def bubble_sort(values: list) -> list:\n    arr = list(values)\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n - i - 1):\n            if arr[j] > arr[j + 1]:\n                arr[j], arr[j + 1] = arr[j + 1], arr[j]\n    return arr\n\nprint(bubble_sort(numbers))",
-  "title": "Bubble Sort"
+  "title": "Bubble Sort",
+  "complexity": "O(n²)"
 }

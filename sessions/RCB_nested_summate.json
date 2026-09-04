@@ -257,5 +257,6 @@
     }
   ],
   "code": "sum = 0\nfor i in range(n):\n    for j in range(n):\n        sum = sum + i + j\nprint(sum)",
-  "title": "Nested Summate"
+  "title": "Nested Summate",
+  "complexity": "O(n²)"
 }

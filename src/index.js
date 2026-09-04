@@ -11,9 +11,14 @@ import './ko-codemirror';
 import './ko-autoresize';
 import Chart from 'chart.js';
 import {removeXY} from './utilities';
+import './example-picker';
+import {createDoublePress, isFillShortcut, FILL_SHORTCUT} from './shortcut';
+import {createExampleSelection} from './example-selection';
+import {fetchExample, fetchExampleIndex, preloadUrl} from './examples';
+import {STARTER_SESSION} from './starter';
 
 
-import {Session, Input, Case, Generator, Instance} from './models.js';
+import {Session} from './models.js';
 
 function setup() {
     $(document).on('copy', function(e) {
@@ -62,6 +67,9 @@ export const CODE_MIRROR_OPTIONS = {
     lineNumbers: true,
 };
 
+/** How long a message stays under the Cases heading. */
+export const HINT_TIMEOUT_MS = 9000;
+
 export const CHART_OPTIONS = {
     scales: {
         xAxes: [{
@@ -95,6 +103,24 @@ class CaseBuilderModel {
         this.codeMirrorReadOnlyOptions = CODE_MIRROR_READONLY_OPTIONS;
         this.chartData = {datasets: []};
         this.chartDatasetsMap = {};
+
+        // Curated example sessions (see <example-picker>); filled in by loadExampleIndex()
+        this.examples = ko.observableArray([]);
+        // The dropdown both picks an example and shows which one is open
+        this.selectedExample = createExampleSelection({
+            loadedFrom: this.session.loadedFrom,
+            load: (file) => this.loadExample(file),
+        }).selected;
+
+        // A short message shown with the cases, for the fill-in shortcut
+        this.hint = ko.observable("");
+        this.hintTimer = null;
+        // Ctrl+I fills the empty cases in, but only on the second press
+        this.fillShortcut = createDoublePress({
+            onArm: () => this.say(`Press ${FILL_SHORTCUT} again to fill the empty cases with example inputs.`, 0),
+            onExpire: () => this.hint(""),
+            onFire: () => this.fillEmptyCases(),
+        });
         this.chart = new Chart(chart.getContext('2d'), {
             type: 'scatter',
             data: this.chartData,
@@ -163,6 +189,107 @@ class CaseBuilderModel {
         }, this.session.instances, "arrayChange");
     }
 
+    /**
+     * Replace the current session with the given JSON data. `file` names the file in
+     * sessions/ it came from, so the dropdown can show it; omit it for the starter.
+     */
+    applySession(data, file) {
+        this.session.fromJson(data, file);
+    }
+
+    /** Show a short message with the cases, clearing it after `clearAfter` ms (0 = leave it). */
+    say(message, clearAfter = HINT_TIMEOUT_MS) {
+        if (this.hintTimer !== null) {
+            clearTimeout(this.hintTimer);
+            this.hintTimer = null;
+        }
+        this.hint(message);
+        if (clearAfter > 0) {
+            this.hintTimer = setTimeout(() => {
+                this.hintTimer = null;
+                this.hint("");
+            }, clearAfter);
+        }
+    }
+
+    /**
+     * The shortcut was pressed. The first press only offers; the second fills the
+     * empty cases in. Says why nothing will happen rather than arming pointlessly.
+     */
+    requestFillEmptyCases() {
+        if (this.session.inputs().length === 0) {
+            this.say("Add an input parameter first, then this will suggest inputs for it.");
+            return "unavailable";
+        }
+        if (this.session.cases().length > 0 && this.session.emptyCases().length === 0) {
+            this.say("Every case already has inputs, so there is nothing to fill in.");
+            return "unavailable";
+        }
+        return this.fillShortcut.press();
+    }
+
+    /** Fill every empty case with inputs to run. Nothing is run. */
+    fillEmptyCases() {
+        const {filled, note} = this.session.fillEmptyCases();
+        if (filled.length === 0) {
+            this.say("There were no empty cases to fill in.");
+            return filled;
+        }
+        const cases = filled.join(" and ");
+        this.say(note
+            ? `Filled in ${cases}. ${note} Use the Run buttons to plot them.`
+            : `Added example inputs to ${cases}.`
+                + " Edit them so each case really is its best or worst, then use the Run buttons.");
+        return filled;
+    }
+
+    /** Fetch sessions/index.json and populate the "Load example" dropdown. */
+    loadExampleIndex() {
+        return fetchExampleIndex().then((index) => {
+            this.examples(index.groups || []);
+        }, (error) => {
+            console.error("Could not load the example index (sessions/index.json)", error);
+        });
+    }
+
+    /** Load a curated example by file name (e.g. "RCB_binary_search.json"). */
+    loadExample(file) {
+        const result = $.Deferred();
+        // Run outside the <select> change event: Chromium leaves the dropdown stuck if a
+        // confirm() dialog opens while the event is still being dispatched.
+        setTimeout(() => {
+            if (this.session.hasUnsavedWork()) {
+                if (document.activeElement) {
+                    document.activeElement.blur();
+                }
+                if (!confirm(`Load the example "${file}"?\nThis will replace your current algorithm, cases, and plotted instances.`)) {
+                    result.reject();
+                    return;
+                }
+            }
+            fetchExample(file).then((data) => {
+                try {
+                    this.applySession(data, file);
+                } catch (error) {
+                    // Never let one bad session file leave the page in a state where
+                    // nothing else will load
+                    alert(`Could not load the example: ${file}`);
+                    console.error(error);
+                    result.reject(error);
+                    return;
+                }
+                // Make the page link shareable: ?preload=<file>
+                window.history.replaceState(null, "", preloadUrl(file));
+                result.resolve(data);
+            }, (error) => {
+                alert(`Could not load the example: ${file}`);
+                console.error(error);
+                result.reject(error);
+            });
+        }, 0);
+        return result.promise();
+    }
+
 }
 
 $(document).ready(function() {
@@ -174,33 +301,42 @@ $(document).ready(function() {
     let chart = document.getElementById("runtime-chart");
     let model = new CaseBuilderModel(chart, {});
 
+    const start = () => {
+        ko.applyBindings(model);
+        console.log(model.session.toJson());
+    };
+
     if (preloadName != null) {
-        $.getJSON(`sessions/${preloadName}`, (data) => {
-            model.session.fromJson(data);
-            ko.applyBindings(model);
-        }).fail((error) => {
-            alert(`The given session was not found: ${preloadName}\nCheck that the URL was correct?`)
+        fetchExample(preloadName).then((data) => {
+            try {
+                model.applySession(data, preloadName);
+            } catch (error) {
+                alert(`The given session could not be loaded: ${preloadName}`);
+                console.error(error);
+                model.applySession(STARTER_SESSION);
+            }
+            start();
+        }, (error) => {
+            alert(`The given session was not found: ${preloadName}\nCheck that the URL was correct?`);
             console.error(error);
+            // Fall back to the starter so the page is still usable
+            model.applySession(STARTER_SESSION);
+            start();
         });
     } else {
-        model.session.code(`sum = 0
-for i in range(n):
-    for j in range(n):
-        sum = sum + i + j
-print(sum)
-    
-    `);
-        ko.applyBindings(model);
-
-        model.session.inputs.push(new Input("n", "int"));
-        model.session.inputs.push(new Input("array", "list[int]"));
-
-        model.session.cases.push(new Case(null, "Best", "#00FF00", [
-            new Generator(null, [ko.observable("3"), ko.observable("[randint(0, 10) for i in range(n)]")]),
-            new Generator(null, [ko.observable("4"), ko.observable("[1,2,3, 4]")])
-        ]));
+        model.applySession(STARTER_SESSION);
+        start();
     }
 
-    console.log(model.session.toJson());
+    // Ctrl+I twice fills the empty cases with example inputs
+    $(document).on('keydown', function (event) {
+        if (!isFillShortcut(event)) {
+            return;
+        }
+        event.preventDefault();
+        model.requestFillEmptyCases();
+    });
+
+    model.loadExampleIndex();
 });
 

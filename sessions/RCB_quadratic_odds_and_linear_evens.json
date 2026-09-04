@@ -1219,5 +1219,6 @@
     }
   ],
   "code": "sum = 0\nif n % 2:\n    for i in range(n):\n        for j in range(n):\n            sum = sum + i + j\nelse:\n    for i in range(100*n):\n        sum = sum + i\nprint(sum)",
-  "title": "Quadratic Odds and Linear Evens"
+  "title": "Quadratic Odds and Linear Evens",
+  "complexity": "O(n²)"
 }

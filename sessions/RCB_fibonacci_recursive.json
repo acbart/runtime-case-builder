@@ -21,5 +21,6 @@
   ],
   "instances": [],
   "code": "def fib(n: int) -> int:\n    if n <= 1:\n        return n\n    return fib(n - 1) + fib(n - 2)\n\nprint(fib(n))",
-  "title": "Fibonacci (Naive Recursive)"
+  "title": "Fibonacci (Naive Recursive)",
+  "complexity": "O(2ⁿ)"
 }

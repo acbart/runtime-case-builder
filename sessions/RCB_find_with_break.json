@@ -1,12 +1,12 @@
 {
   "inputs": [
     {
-      "name": "array",
-      "type": "list[int]"
-    },
-    {
       "name": "n",
       "type": "int"
+    },
+    {
+      "name": "array",
+      "type": "list[int]"
     },
     {
       "name": "k",

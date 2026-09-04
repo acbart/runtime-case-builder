@@ -1,11 +1,15 @@
 /**
  * Regression tests over the real session files in sessions/.
  *
- * Nine of them were saved by an older version of the tool, which stored an
- * instance's printed output as an array of lines. The instances table calls
- * .trim() on that value, so an array used to throw while the table rendered and
- * left the page unable to load anything else. These tests load every shipped
- * session the way the app does and check what the page will be handed.
+ * Nine of them used to carry plotted points saved by an older version of the
+ * tool, which stored an instance's printed output as an array of lines. The
+ * instances table calls .trim() on that value, so an array threw while the table
+ * rendered and left the page unable to load anything else. Those points have
+ * since been cleared, but sessions students saved themselves can still hold the
+ * old shape, so the handling is covered in utilities.test.js and models.test.js.
+ *
+ * These tests load every shipped session the way the app does and check what the
+ * page will be handed.
  */
 jest.mock('../src/execution.js', () => ({
     countSteps: jest.fn(),
@@ -57,12 +61,48 @@ describe('every shipped session', () => {
         expect(session.hasUnsavedWork()).toBe(false);
     });
 
-    test('the sessions saved with plotted instances are still covered', () => {
+    test('no shipped session carries plotted points', () => {
+        // They were cleared because their step counts came from an older counter:
+        // plotting them beside a fresh run drew two lines of different slopes for one
+        // case. Before adding points back to a session, check they came from the
+        // counter in execution.js.
         const withInstances = FILES.filter((f) => (read(f).instances || []).length > 0);
-        expect(withInstances.length).toBeGreaterThan(0);
-        // The legacy array-of-lines output shape is what this suite guards against
-        const legacy = withInstances.filter((f) => read(f).instances.some((i) => Array.isArray(i.output)));
-        expect(legacy.length).toBeGreaterThan(0);
+        expect(withInstances).toEqual([]);
+    });
+
+    // The runner assigns inputs in declared order before the algorithm runs, so a
+    // generator can only build on inputs declared above it. Referring to one declared
+    // later would raise NameError for every instance of that case.
+    const escaped = (name) => name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const refers = (snippet, name) =>
+        new RegExp(`(^|[^A-Za-z0-9_])${escaped(name)}([^A-Za-z0-9_]|$)`).test(String(snippet));
+
+    test.each(FILES)('%s never builds an input from one declared after it', (file) => {
+        const data = read(file);
+        const names = data.inputs.map((i) => i.name);
+        const violations = [];
+        (data.cases || []).forEach((aCase) => (aCase.generators || []).forEach((generator) => {
+            (generator.code || []).forEach((snippet, position) => {
+                names.slice(position + 1).forEach((later) => {
+                    if (refers(snippet, later)) {
+                        violations.push(`${names[position]} = ${snippet} refers to ${later}, declared after it`);
+                    }
+                });
+            });
+        }));
+        expect(violations).toEqual([]);
+    });
+
+    test('building a later input from an earlier one is used, and allowed', () => {
+        // for example n, then a list sized by n, then a key taken from that list
+        const withChain = FILES.filter((file) => {
+            const data = read(file);
+            const names = data.inputs.map((i) => i.name);
+            return (data.cases || []).some((c) => (c.generators || []).some((g) =>
+                (g.code || []).some((snippet, position) =>
+                    names.slice(0, position).some((earlier) => refers(snippet, earlier)))));
+        });
+        expect(withChain.length).toBeGreaterThan(0);
     });
 
     test('every lesson question arrives with empty cases, which is what the shortcut is for', () => {
@@ -103,15 +143,23 @@ describe('every shipped session', () => {
 
     test('loading one session after another leaves no trace of the first', () => {
         const session = Session.EMPTY();
-        const withInstances = FILES.find((f) => (read(f).instances || []).length > 0);
-        const withNone = FILES.find((f) => (read(f).instances || []).length === 0);
+        const shipped = FILES[0];
 
-        session.fromJson(read(withInstances), withInstances);
-        expect(session.instances().length).toBeGreaterThan(0);
+        // A session that does carry plotted points, in the shape older saves used
+        session.fromJson({
+            inputs: [{ name: 'n', type: 'int' }],
+            cases: [{ id: 0, name: 'W', color: '#FF0000', generators: [{ id: 0, code: ['5'] }] }],
+            instances: [{ fromCase: 0, fromGenerator: 0, value: 5, steps: 1, error: null, output: ['5\n'], data: {} }],
+            code: 'x = 1',
+            title: 'Saved work',
+        }, 'RCB_saved.json');
+        expect(session.instances()).toHaveLength(1);
+        expect(session.instances()[0].output()).toBe('5\n');
 
-        session.fromJson(read(withNone), withNone);
+        session.fromJson(read(shipped), shipped);
         expect(session.instances()).toHaveLength(0);
-        expect(session.title()).toBe(read(withNone).title);
+        expect(session.title()).toBe(read(shipped).title);
+        expect(session.loadedFrom()).toBe(shipped);
         expect(session.hasUnsavedWork()).toBe(false);
     });
 });

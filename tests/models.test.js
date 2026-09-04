@@ -680,16 +680,16 @@ describe('Session.fillEmptyCases', () => {
 
         test('creates a case the problem is missing, such as a worst case', () => {
             const s = loaded('RCB_find_with_break.json', {
-                inputs: [{ name: 'array', type: 'list[int]' }, { name: 'n', type: 'int' }, { name: 'k', type: 'int' }],
+                inputs: [{ name: 'n', type: 'int' }, { name: 'array', type: 'list[int]' }, { name: 'k', type: 'int' }],
                 cases: [{ id: 0, name: 'Best', color: '#00FF00', generators: [] }],
             });
             const {filled} = s.fillEmptyCases();
 
             expect(filled).toEqual(['Best', 'Worst']);
             expect(s.cases().map((c) => c.name())).toEqual(['Best', 'Worst']);
-            // k is at the front of the list, then k is not in it at all
-            expect(codeOf(caseNamed(s, 'Best'))[0]).toEqual(['list(range(10))', 'len(array)', '0']);
-            expect(codeOf(caseNamed(s, 'Worst'))[0]).toEqual(['list(range(10))', 'len(array)', '-1']);
+            // Each input builds on the one before: array from n, then k from array
+            expect(codeOf(caseNamed(s, 'Best'))[0]).toEqual(['10', 'list(range(n))', 'array[0]']);
+            expect(codeOf(caseNamed(s, 'Worst'))[0]).toEqual(['10', 'list(range(n))', '-1']);
         });
 
         test('is found by title for a session opened from disk', () => {

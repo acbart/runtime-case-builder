@@ -21,9 +21,6 @@ const ODD_SIZES = [11, 21, 41, 81];
 /** A generator per size, where the size is the first input (`n`) and `rest` follows. */
 const bySize = (sizes, ...rest) => sizes.map((size) => [String(size), ...rest]);
 
-/** A generator per size for sessions whose first input is the list itself. */
-const byArray = (target) => SIZES.map((size) => [`list(range(${size}))`, "len(array)", target]);
-
 export const CURATED_CASES = {
     "RCB_lesson_4_question_1.json": {
         title: "Lesson 4 Question 1",
@@ -89,10 +86,10 @@ export const CURATED_CASES = {
         title: "Find with Break",
         note: "Finding k at the front breaks out on the first pass; a k that is not in the list is searched to the end.",
         cases: [
-            // k is the first item in the list
-            {name: "Best", color: BEST_COLOR, generators: byArray("0")},
-            // k is not in the list at all
-            {name: "Worst", color: WORST_COLOR, generators: byArray("-1")},
+            // k is the first item, so the loop breaks straight away
+            {name: "Best", color: BEST_COLOR, generators: bySize(SIZES, "list(range(n))", "array[0]")},
+            // k is not in the list at all, so the loop never breaks
+            {name: "Worst", color: WORST_COLOR, generators: bySize(SIZES, "list(range(n))", "-1")},
         ],
     },
 };

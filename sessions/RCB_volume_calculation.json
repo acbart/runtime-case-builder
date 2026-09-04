@@ -44,73 +44,7 @@
       ]
     }
   ],
-  "instances": [
-    {
-      "fromCase": 2,
-      "fromGenerator": 0,
-      "value": 1,
-      "steps": 5,
-      "error": null,
-      "output": [
-        "7\n"
-      ],
-      "data": {
-        "n": "1"
-      }
-    },
-    {
-      "fromCase": 2,
-      "fromGenerator": 1,
-      "value": 3,
-      "steps": 5,
-      "error": null,
-      "output": [
-        "63\n"
-      ],
-      "data": {
-        "n": "3"
-      }
-    },
-    {
-      "fromCase": 2,
-      "fromGenerator": 2,
-      "value": 8,
-      "steps": 5,
-      "error": null,
-      "output": [
-        "448\n"
-      ],
-      "data": {
-        "n": "8"
-      }
-    },
-    {
-      "fromCase": 2,
-      "fromGenerator": 4,
-      "value": 27,
-      "steps": 5,
-      "error": null,
-      "output": [
-        "5103\n"
-      ],
-      "data": {
-        "n": "27"
-      }
-    },
-    {
-      "fromCase": 2,
-      "fromGenerator": 5,
-      "value": 19,
-      "steps": 5,
-      "error": null,
-      "output": [
-        "2527\n"
-      ],
-      "data": {
-        "n": "19"
-      }
-    }
-  ],
+  "instances": [],
   "code": "area = n * n\ndepth = 7\nvolume = area * depth\nprint(volume)",
   "title": "Volume Calculation",
   "complexity": "O(1)"

@@ -62,5 +62,6 @@
   ],
   "instances": [],
   "code": "def maximum(values: [int]) -> int:\n    max_so_far = values[0]\n    for value in values:\n        if value > max_so_far:\n            max_so_far = value\n    return max_so_far\nprint(maximum(numbers))",
-  "title": "Max List"
+  "title": "Max List",
+  "complexity": "O(n)"
 }

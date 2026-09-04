@@ -216,5 +216,6 @@
     }
   ],
   "code": "\ndef find(values, target):\n    for value in values:\n        if value == target:\n            return \"FOUND\"\n    return \"NOT FOUND\"\n\nprint(find(values, target))",
-  "title": "Find with Early Return"
+  "title": "Find with Early Return",
+  "complexity": "O(n)"
 }

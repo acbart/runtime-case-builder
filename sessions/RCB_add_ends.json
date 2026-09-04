@@ -62,5 +62,6 @@
   ],
   "instances": [],
   "code": "def add_ends(values: [int]) -> int:\n    return values[0] + values[-1]\nprint(add_ends(numbers))",
-  "title": "Add Ends"
+  "title": "Add Ends",
+  "complexity": "O(1)"
 }

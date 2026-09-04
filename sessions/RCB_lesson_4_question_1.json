@@ -21,5 +21,6 @@
   ],
   "instances": [],
   "code": "a = 47\nb = a - 22\nc = a * 57 + a * b - b",
-  "title": "Lesson 4 Question 1"
+  "title": "Lesson 4 Question 1",
+  "collection": "Lesson 4"
 }

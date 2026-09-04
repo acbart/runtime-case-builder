@@ -1,0 +1,502 @@
+{
+  "count": 42,
+  "groups": [
+    {
+      "kind": "complexity",
+      "complexity": "O(1)",
+      "label": "O(1): Constant",
+      "examples": [
+        {
+          "file": "RCB_add_ends.json",
+          "title": "Add Ends",
+          "complexity": "O(1)",
+          "collection": null,
+          "cases": [
+            "Regular"
+          ],
+          "label": "Add Ends"
+        },
+        {
+          "file": "RCB_constant_time.json",
+          "title": "Constant Time (First and Last)",
+          "complexity": "O(1)",
+          "collection": null,
+          "cases": [
+            "Constant"
+          ],
+          "label": "Constant Time (First and Last)"
+        },
+        {
+          "file": "RCB_volume_calculation.json",
+          "title": "Volume Calculation",
+          "complexity": "O(1)",
+          "collection": null,
+          "cases": [
+            "Regular"
+          ],
+          "label": "Volume Calculation"
+        }
+      ]
+    },
+    {
+      "kind": "complexity",
+      "complexity": "O(log n)",
+      "label": "O(log n): Logarithmic",
+      "examples": [
+        {
+          "file": "RCB_binary_search.json",
+          "title": "Binary Search",
+          "complexity": "O(log n)",
+          "collection": null,
+          "cases": [
+            "Found (best/avg case)",
+            "Not Found (worst case)"
+          ],
+          "label": "Binary Search"
+        },
+        {
+          "file": "RCB_gcd_euclidean.json",
+          "title": "GCD (Euclidean Algorithm)",
+          "complexity": "O(log n)",
+          "collection": null,
+          "cases": [
+            "Large numbers"
+          ],
+          "label": "GCD (Euclidean Algorithm)"
+        }
+      ]
+    },
+    {
+      "kind": "complexity",
+      "complexity": "O(n)",
+      "label": "O(n): Linear",
+      "examples": [
+        {
+          "file": "RCB_count_occurrences.json",
+          "title": "Count Occurrences",
+          "complexity": "O(n)",
+          "collection": null,
+          "cases": [
+            "Random list"
+          ],
+          "label": "Count Occurrences"
+        },
+        {
+          "file": "RCB_character_count.json",
+          "title": "Count Vowels in String",
+          "complexity": "O(n)",
+          "collection": null,
+          "cases": [
+            "Random text"
+          ],
+          "label": "Count Vowels in String"
+        },
+        {
+          "file": "RCB_find_duplicates_set.json",
+          "title": "Duplicate Detection (Set O(n))",
+          "complexity": "O(n)",
+          "collection": null,
+          "cases": [
+            "Set-based O(n)"
+          ],
+          "label": "Duplicate Detection (Set O(n))"
+        },
+        {
+          "file": "RCB_fibonacci_iterative.json",
+          "title": "Fibonacci (Iterative)",
+          "complexity": "O(n)",
+          "collection": null,
+          "cases": [
+            "Iterative (linear)"
+          ],
+          "label": "Fibonacci (Iterative)"
+        },
+        {
+          "file": "RCB_find_in_list.json",
+          "title": "Find in List",
+          "complexity": "O(n)",
+          "collection": null,
+          "cases": [
+            "Regular"
+          ],
+          "label": "Find in List"
+        },
+        {
+          "file": "RCB_find_in_list__alternate_.json",
+          "title": "Find in List (Alternate)",
+          "complexity": "O(n)",
+          "collection": null,
+          "cases": [
+            "Best",
+            "Worst"
+          ],
+          "label": "Find in List (Alternate)"
+        },
+        {
+          "file": "RCB_min_max.json",
+          "title": "Find Min and Max",
+          "complexity": "O(n)",
+          "collection": null,
+          "cases": [
+            "Random"
+          ],
+          "label": "Find Min and Max"
+        },
+        {
+          "file": "RCB_find_with_break_averages.json",
+          "title": "Find with Break",
+          "complexity": "O(n)",
+          "collection": null,
+          "cases": [
+            "Best",
+            "Worst",
+            "Average"
+          ],
+          "label": "Find with Break (find_with_break_averages)"
+        },
+        {
+          "file": "RCB_find_with_break_dynamic.json",
+          "title": "Find with Break",
+          "complexity": "O(n)",
+          "collection": null,
+          "cases": [
+            "Best",
+            "Worst"
+          ],
+          "label": "Find with Break (find_with_break_dynamic)"
+        },
+        {
+          "file": "RCB_find_with_break_specifics.json",
+          "title": "Find with Break",
+          "complexity": "O(n)",
+          "collection": null,
+          "cases": [
+            "Best",
+            "Worst"
+          ],
+          "label": "Find with Break (find_with_break_specifics)"
+        },
+        {
+          "file": "RCB_find_with_break.json",
+          "title": "Find with Break",
+          "complexity": "O(n)",
+          "collection": null,
+          "cases": [
+            "Best"
+          ],
+          "label": "Find with Break (find_with_break)"
+        },
+        {
+          "file": "RCB_find_with_early_return.json",
+          "title": "Find with Early Return",
+          "complexity": "O(n)",
+          "collection": null,
+          "cases": [
+            "Best",
+            "Worst"
+          ],
+          "label": "Find with Early Return"
+        },
+        {
+          "file": "RCB_linear_search_best_worst.json",
+          "title": "Linear Search: Best vs Worst Case",
+          "complexity": "O(n)",
+          "collection": null,
+          "cases": [
+            "Best Case (found at start)",
+            "Worst Case (not found)"
+          ],
+          "label": "Linear Search: Best vs Worst Case"
+        },
+        {
+          "file": "RCB_max_list.json",
+          "title": "Max List",
+          "complexity": "O(n)",
+          "collection": null,
+          "cases": [
+            "Regular"
+          ],
+          "label": "Max List"
+        },
+        {
+          "file": "RCB_palindrome_check.json",
+          "title": "Palindrome Check",
+          "complexity": "O(n)",
+          "collection": null,
+          "cases": [
+            "Palindromes",
+            "Non-Palindromes"
+          ],
+          "label": "Palindrome Check"
+        },
+        {
+          "file": "RCB_factorial_recursive.json",
+          "title": "Recursive Factorial",
+          "complexity": "O(n)",
+          "collection": null,
+          "cases": [
+            "Regular"
+          ],
+          "label": "Recursive Factorial"
+        },
+        {
+          "file": "RCB_reverse_list.json",
+          "title": "Reverse List",
+          "complexity": "O(n)",
+          "collection": null,
+          "cases": [
+            "Random"
+          ],
+          "label": "Reverse List"
+        },
+        {
+          "file": "RCB_summate_function.json",
+          "title": "Summate Function",
+          "complexity": "O(n)",
+          "collection": null,
+          "cases": [
+            "Regular",
+            "Random"
+          ],
+          "label": "Summate Function"
+        },
+        {
+          "file": "RCB_two_sum_sorted.json",
+          "title": "Two Sum (Sorted, Two Pointers)",
+          "complexity": "O(n)",
+          "collection": null,
+          "cases": [
+            "Target found",
+            "Target not found"
+          ],
+          "label": "Two Sum (Sorted, Two Pointers)"
+        }
+      ]
+    },
+    {
+      "kind": "complexity",
+      "complexity": "O(n log n)",
+      "label": "O(n log n): Linearithmic",
+      "examples": [
+        {
+          "file": "RCB_merge_sort.json",
+          "title": "Merge Sort",
+          "complexity": "O(n log n)",
+          "collection": null,
+          "cases": [
+            "Random"
+          ],
+          "label": "Merge Sort"
+        }
+      ]
+    },
+    {
+      "kind": "complexity",
+      "complexity": "O(n²)",
+      "label": "O(n²): Quadratic",
+      "examples": [
+        {
+          "file": "RCB_all_pairs_sum.json",
+          "title": "All Pairs with Target Sum",
+          "complexity": "O(n²)",
+          "collection": null,
+          "cases": [
+            "Random"
+          ],
+          "label": "All Pairs with Target Sum"
+        },
+        {
+          "file": "RCB_bubble_sort.json",
+          "title": "Bubble Sort",
+          "complexity": "O(n²)",
+          "collection": null,
+          "cases": [
+            "Random (average case)",
+            "Already Sorted (best case)",
+            "Reverse Sorted (worst case)"
+          ],
+          "label": "Bubble Sort"
+        },
+        {
+          "file": "RCB_find_duplicates_comparison.json",
+          "title": "Duplicate Detection (Naive O(n²))",
+          "complexity": "O(n²)",
+          "collection": null,
+          "cases": [
+            "Naive O(n²)"
+          ],
+          "label": "Duplicate Detection (Naive O(n²))"
+        },
+        {
+          "file": "RCB_insertion_sort.json",
+          "title": "Insertion Sort",
+          "complexity": "O(n²)",
+          "collection": null,
+          "cases": [
+            "Random (average case)",
+            "Already Sorted (best case)"
+          ],
+          "label": "Insertion Sort"
+        },
+        {
+          "file": "RCB_nested_loop.json",
+          "title": "Nested Loop",
+          "complexity": "O(n²)",
+          "collection": null,
+          "cases": [
+            "Regular"
+          ],
+          "label": "Nested Loop"
+        },
+        {
+          "file": "RCB_nested_summate.json",
+          "title": "Nested Summate",
+          "complexity": "O(n²)",
+          "collection": null,
+          "cases": [
+            "Best"
+          ],
+          "label": "Nested Summate (nested_summate)"
+        },
+        {
+          "file": "RCB_nestedSum.json",
+          "title": "Nested Summate",
+          "complexity": "O(n²)",
+          "collection": null,
+          "cases": [
+            "Best"
+          ],
+          "label": "Nested Summate (nestedSum)"
+        },
+        {
+          "file": "RCB_quadratic_odds_and_linear_evens.json",
+          "title": "Quadratic Odds and Linear Evens",
+          "complexity": "O(n²)",
+          "collection": null,
+          "cases": [
+            "Best",
+            "Worst"
+          ],
+          "label": "Quadratic Odds and Linear Evens"
+        },
+        {
+          "file": "RCB_selection_sort.json",
+          "title": "Selection Sort",
+          "complexity": "O(n²)",
+          "collection": null,
+          "cases": [
+            "Random"
+          ],
+          "label": "Selection Sort"
+        }
+      ]
+    },
+    {
+      "kind": "complexity",
+      "complexity": "O(n³)",
+      "label": "O(n³): Cubic",
+      "examples": [
+        {
+          "file": "RCB_matrix_multiply.json",
+          "title": "Matrix Multiplication (O(n³))",
+          "complexity": "O(n³)",
+          "collection": null,
+          "cases": [
+            "Square Matrix"
+          ],
+          "label": "Matrix Multiplication (O(n³))"
+        }
+      ]
+    },
+    {
+      "kind": "complexity",
+      "complexity": "O(2ⁿ)",
+      "label": "O(2ⁿ): Exponential",
+      "examples": [
+        {
+          "file": "RCB_fibonacci_recursive.json",
+          "title": "Fibonacci (Naive Recursive)",
+          "complexity": "O(2ⁿ)",
+          "collection": null,
+          "cases": [
+            "Naive Recursive"
+          ],
+          "label": "Fibonacci (Naive Recursive)"
+        }
+      ]
+    },
+    {
+      "kind": "collection",
+      "collection": "Lesson 4",
+      "label": "Lesson 4",
+      "examples": [
+        {
+          "file": "RCB_lesson_4_question_1.json",
+          "title": "Lesson 4 Question 1",
+          "complexity": "Other",
+          "collection": "Lesson 4",
+          "cases": [
+            "Worst",
+            "Best"
+          ],
+          "label": "Lesson 4 Question 1"
+        },
+        {
+          "file": "RCB_lesson_4_question_2.json",
+          "title": "Lesson 4 Question 2",
+          "complexity": "Other",
+          "collection": "Lesson 4",
+          "cases": [
+            "Worst",
+            "Best"
+          ],
+          "label": "Lesson 4 Question 2"
+        },
+        {
+          "file": "RCB_lesson_4_question_3.json",
+          "title": "Lesson 4 Question 3",
+          "complexity": "Other",
+          "collection": "Lesson 4",
+          "cases": [
+            "Worst",
+            "Best"
+          ],
+          "label": "Lesson 4 Question 3"
+        },
+        {
+          "file": "RCB_lesson_4_question_4.json",
+          "title": "Lesson 4 Question 4",
+          "complexity": "Other",
+          "collection": "Lesson 4",
+          "cases": [
+            "Best",
+            "Worst"
+          ],
+          "label": "Lesson 4 Question 4"
+        },
+        {
+          "file": "RCB_lesson_4_question_5.json",
+          "title": "Lesson 4 Question 5",
+          "complexity": "Other",
+          "collection": "Lesson 4",
+          "cases": [
+            "Best",
+            "Worst"
+          ],
+          "label": "Lesson 4 Question 5"
+        },
+        {
+          "file": "RCB_lesson_4_question_6.json",
+          "title": "Lesson 4 Question 6",
+          "complexity": "Other",
+          "collection": "Lesson 4",
+          "cases": [
+            "Best",
+            "Worst"
+          ],
+          "label": "Lesson 4 Question 6"
+        }
+      ]
+    }
+  ]
+}

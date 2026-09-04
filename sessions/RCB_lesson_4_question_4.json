@@ -21,5 +21,6 @@
   ],
   "instances": [],
   "code": "result = 0\nfor i in range(n):\n    for j in range(i):\n        result = i * j\nprint(result)",
-  "title": "Lesson 4 Question 4"
+  "title": "Lesson 4 Question 4",
+  "collection": "Lesson 4"
 }

@@ -20,5 +20,6 @@
   ],
   "instances": [],
   "code": "def gcd(a: int, b: int) -> int:\n    while b != 0:\n        a, b = b, a % b\n    return a\n\nprint(gcd(a, b))",
-  "title": "GCD (Euclidean Algorithm)"
+  "title": "GCD (Euclidean Algorithm)",
+  "complexity": "O(log n)"
 }

@@ -32,5 +32,6 @@
   ],
   "instances": [],
   "code": "def linear_search(values: list, key: int) -> int:\n    for i in range(len(values)):\n        if values[i] == key:\n            return i\n    return -1\n\nprint(linear_search(numbers, target))",
-  "title": "Linear Search: Best vs Worst Case"
+  "title": "Linear Search: Best vs Worst Case",
+  "complexity": "O(n)"
 }

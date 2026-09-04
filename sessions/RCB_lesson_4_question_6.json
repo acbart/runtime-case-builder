@@ -25,5 +25,6 @@
   ],
   "instances": [],
   "code": "first = \"nowhere\"\nfor index, number in enumerate(numbers):\n    if number < 0:\n        first = index\n        break\nprint(\"Found at\", first)",
-  "title": "Lesson 4 Question 6"
+  "title": "Lesson 4 Question 6",
+  "collection": "Lesson 4"
 }

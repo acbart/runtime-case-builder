@@ -25,5 +25,6 @@
   ],
   "instances": [],
   "code": "sum = 0\nfor i in range(n):\n    if numbers[i] % 2 == 0:\n        sum += numbers[i]",
-  "title": "Lesson 4 Question 2"
+  "title": "Lesson 4 Question 2",
+  "collection": "Lesson 4"
 }

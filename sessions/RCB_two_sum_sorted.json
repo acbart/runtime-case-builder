@@ -32,5 +32,6 @@
   ],
   "instances": [],
   "code": "def two_sum_sorted(values: list, total: int):\n    left = 0\n    right = len(values) - 1\n    while left < right:\n        s = values[left] + values[right]\n        if s == total:\n            return (values[left], values[right])\n        elif s < total:\n            left += 1\n        else:\n            right -= 1\n    return None\n\nprint(two_sum_sorted(numbers, target))",
-  "title": "Two Sum (Sorted, Two Pointers)"
+  "title": "Two Sum (Sorted, Two Pointers)",
+  "complexity": "O(n)"
 }

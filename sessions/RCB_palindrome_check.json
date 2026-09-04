@@ -28,5 +28,6 @@
   ],
   "instances": [],
   "code": "def is_palindrome(s: str) -> bool:\n    left = 0\n    right = len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n\nprint(is_palindrome(text))",
-  "title": "Palindrome Check"
+  "title": "Palindrome Check",
+  "complexity": "O(n)"
 }
